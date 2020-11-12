@@ -1,0 +1,32 @@
+package fr.mjta.tenis.controller;
+
+import fr.mjta.tenis.domain.services.OrganizerService;
+import fr.mjta.tenis.domain.services.PlayerService;
+
+import javax.ejb.EJB;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+@WebServlet("/create-player")
+public class PlayerController extends HttpServlet {
+    @EJB
+    private PlayerService playerService;
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String name = request.getParameter("name");
+        String gender = request.getParameter("gender");
+        String nationality = request.getParameter("nationality");
+
+        var result = playerService.register(name, gender, nationality);
+        request.setAttribute("result", result ? "Create Successful" :"Create Failed");
+        doGet(request, response);
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        this.getServletContext().getRequestDispatcher("/WEB-INF/register-player.jsp").forward(request, response);
+    }
+}
