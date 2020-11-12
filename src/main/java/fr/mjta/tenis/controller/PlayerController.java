@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/create-player")
+@WebServlet("/register-player")
 public class PlayerController extends HttpServlet {
     @EJB
     private PlayerService playerService;
