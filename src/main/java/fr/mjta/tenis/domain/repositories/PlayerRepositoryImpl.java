@@ -1,27 +1,24 @@
 package fr.mjta.tenis.domain.repositories;
 
+import fr.mjta.tenis.domain.entities.Gender;
 import fr.mjta.tenis.domain.entities.Organizer;
+import fr.mjta.tenis.domain.entities.Player;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 @Stateless
-public class OrganizerRepositoryImpl implements OrganizerRepository {
+public class PlayerRepositoryImpl implements PlayerRepository {
 
     @PersistenceContext
     private EntityManager entityManager;
 
     @Override
-    public Organizer getById(String id) {
-        return entityManager.find(Organizer.class, id);
-    }
-
-    @Override
-    public Organizer getByLogin(String login) {
-        TypedQuery<Organizer> query = entityManager.createQuery("SELECT o FROM Organizer o WHERE o.login = :login", Organizer.class);
-        return query.setParameter("login", login).getSingleResult();
+    public Player register(String name, String gender, String nationality) {
+        Player player = new Player(name, Gender.valueOf(gender), nationality);
+        entityManager.persist(player);
+        return player;
     }
 }
