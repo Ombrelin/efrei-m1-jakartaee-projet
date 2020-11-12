@@ -10,7 +10,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="j" %>
 <html>
 <head>
-    <title>Create player</title>
+    <title>Register player</title>
 </head>
 <body>
 
@@ -23,11 +23,14 @@
     <input type="text" id="nationality" name="nationality"/>
 
     <label for="gender">Gender : </label>
-    <input type="text" id="gender" name="gender"/>
+    <select name="gender" id="gender">
+        <option value="MALE">Male</option>
+        <option value="FEMALE">Female</option>
+    </select>
 
     <j:out value="${ result }"></j:out>
     <br/>
-    <button type="submit">Create player</button>
+    <button type="submit">Register player</button>
 </form>
 
 </body>
