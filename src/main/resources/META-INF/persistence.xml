@@ -4,6 +4,10 @@
              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
              version="2.2">
     <persistence-unit name="default">
-
+        <jta-data-source>java:/ProjetDS</jta-data-source>
+        <properties>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MariaDBDialect"/>
+        </properties>
     </persistence-unit>
 </persistence>
