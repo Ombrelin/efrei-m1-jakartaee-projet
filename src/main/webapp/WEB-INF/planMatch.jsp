@@ -14,12 +14,12 @@
 
 <form method="post">
     <label for="dateTime">Date et heure du match :</label><br>
-    <input type="datetime-local" name="dateTime" id="dateTime"/><br>
+    <input required type="datetime-local" name="dateTime" id="dateTime"/><br>
 
     <br>
 
     <label for="court">Court :</label><br>
-    <input type="text" name="court" id="court"/><br>
+    <input required type="text" name="court" id="court"/><br>
 
     <br>
 
