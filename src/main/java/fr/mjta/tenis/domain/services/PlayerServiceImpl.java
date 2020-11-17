@@ -17,7 +17,6 @@ public class PlayerServiceImpl implements PlayerService {
 
     @Override
     public boolean register(String name, String gender, String nationality) {
-        playerRepository.register(name, gender, nationality);
-        return true;
+        return playerRepository.register(name, gender, nationality);
     }
 }
