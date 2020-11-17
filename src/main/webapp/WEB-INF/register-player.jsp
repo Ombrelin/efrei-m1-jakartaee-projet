@@ -17,10 +17,10 @@
 <form method="post">
 
     <label for="name">Name :</label>
-    <input type="text" id="name" name="name"/>
+    <input required type="text" id="name" name="name"/>
 
     <label for="nationality">Nationality : </label>
-    <input type="text" id="nationality" name="nationality"/>
+    <input required type="text" id="nationality" name="nationality"/>
 
     <label for="gender">Gender : </label>
     <select name="gender" id="gender">
