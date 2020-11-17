@@ -6,6 +6,7 @@ import fr.mjta.tenis.domain.repositories.MatchRepository;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Stateless
 public class MatchServiceImpl implements MatchService {
@@ -21,5 +22,15 @@ public class MatchServiceImpl implements MatchService {
         match.setCourt(court);
 
         matchRepository.insertMatch(match);
+    }
+
+    @Override
+    public List<Match> getMatches() {
+        return matchRepository.getMatches();
+    }
+
+    @Override
+    public List<Match> getFinishedMatches() {
+        return matchRepository.getFinishedMatches();
     }
 }
