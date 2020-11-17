@@ -21,7 +21,13 @@ public class PlayerController extends HttpServlet {
         String gender = request.getParameter("gender");
         String nationality = request.getParameter("nationality");
 
-        var result = playerService.register(name, gender, nationality);
+        boolean result;
+        if(name.isEmpty() || gender.isEmpty() || nationality.isEmpty()){
+            result = false;
+        }else{
+            result = playerService.register(name, gender, nationality);
+        }
+        
         request.setAttribute("result", result ? "Create Successful" :"Create Failed");
         doGet(request, response);
     }
