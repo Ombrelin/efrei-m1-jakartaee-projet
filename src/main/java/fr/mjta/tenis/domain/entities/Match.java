@@ -30,6 +30,9 @@ public class Match {
     @Column
     private Duration duration;
 
+    @Column(columnDefinition = "boolean default false")
+    private boolean finished;
+
     @ManyToOne(fetch = FetchType.EAGER)
     private Referee referee;
 
@@ -88,6 +91,14 @@ public class Match {
 
     public void setDuration(Duration duration) {
         this.duration = duration;
+    }
+
+    public boolean isFinished() {
+        return finished;
+    }
+
+    public void setFinished(boolean finished) {
+        this.finished = finished;
     }
 
     public Referee getReferee() {

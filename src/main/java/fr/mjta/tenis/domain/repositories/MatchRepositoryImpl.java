@@ -28,6 +28,6 @@ public class MatchRepositoryImpl implements MatchRepository {
 
     @Override
     public List<Match> getFinishedMatches() {
-        return entityManager.createQuery("SELECT m FROM Match m", Match.class).getResultList();
+        return entityManager.createQuery("SELECT m FROM Match m where m.finished = true", Match.class).getResultList();
     }
 }
