@@ -15,12 +15,8 @@ public class ConsultFinishedMatchesController extends HttpServlet {
 	@EJB
 	private MatchService matchService;
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setAttribute("result", matchService.getFinishedMatches());
-		doGet(request, response);
-	}
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setAttribute("result", matchService.getFinishedMatches());
 		this.getServletContext().getRequestDispatcher("/WEB-INF/consultFinishedMatches.jsp").forward(request, response);
 	}
 }
