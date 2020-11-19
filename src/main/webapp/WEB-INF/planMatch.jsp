@@ -6,25 +6,37 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="j" %>
+<j:set var="contextPath" value="${pageContext.request.contextPath}" />
 <html>
 <head>
     <title>Plan a Match</title>
+    <link href="${contextPath}/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
+<body class="container h-100 d-flex justify-content-center align-items-center">
 
-<form method="post">
-    <label for="dateTime">Date et heure du match :</label><br>
-    <input required type="datetime-local" name="dateTime" id="dateTime"/><br>
+<div class="col-md-5">
+    <form method="post">
 
-    <br>
+        <div class="form-group">
+            <label for="dateTime">Date et heure du match :</label><br>
+            <input class="form-control" required type="datetime-local" name="dateTime" id="dateTime"/><br>
+        </div>
 
-    <label for="court">Court :</label><br>
-    <input required type="text" name="court" id="court"/><br>
+        <div class="form-group">
+            <label for="court">Court :</label><br>
+            <input class="form-control" required type="text" name="court" id="court"/>
+        </div>
 
-    <br>
+        <button type="submit" class="btn btn-primary">Valider</button>
 
-    <button type="submit">Valider</button>
-</form>
+        <j:if test="${not empty result}">
+            <div class="p-3 mb-2 bg-danger text-white mt-3">
+                <j:out value="${ result }"></j:out>
+            </div>
+        </j:if>
+    </form>
+</div>
 
 </body>
 </html>

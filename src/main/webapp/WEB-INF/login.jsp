@@ -8,24 +8,36 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="j" %>
+<j:set var="contextPath" value="${pageContext.request.contextPath}" />
 <html>
 <head>
     <title>Login</title>
+    <link href="${contextPath}/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
+<body class="container h-100 d-flex justify-content-center align-items-center">
 
-<form method="post">
+<div class="col-md-5">
+    <form method="post">
 
-    <label for="login">Login :</label>
-    <input type="text" id="login" name="login"/>
+        <div class="form-group">
+            <label for="login">Login :</label>
+            <input class="form-control" type="text" id="login" name="login" required/>
+        </div>
 
-    <label for="password">Password : </label>
-    <input type="password" id="password" name="password"/>
+        <div class="form-group">
+            <label for="password">Password : </label>
+            <input class="form-control" type="password" id="password" name="password" required/>
+        </div>
 
-    <j:out value="${ result }"></j:out>
-    <br/>
-    <button type="submit">Login</button>
-</form>
+        <button type="submit" class="btn btn-primary">Login</button>
+
+        <j:if test="${not empty result}">
+            <div class="p-3 mb-2 bg-danger text-white mt-3">
+                <j:out value="${ result }"></j:out>
+            </div>
+        </j:if>
+    </form>
+</div>
 
 </body>
 </html>
