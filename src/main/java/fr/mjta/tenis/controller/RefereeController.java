@@ -18,7 +18,7 @@ public class RefereeController extends HttpServlet {
     private RefereeService refereeService;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if (!Objects.equals(request.getParameter("team1score"), "") && !Objects.equals(request.getParameter("team2score"), "")) {
+        if (!Objects.equals(request.getParameter("name"), "") && !Objects.equals(request.getParameter("nationality"), "")) {
             String name = request.getParameter("name");
             String nationality = request.getParameter("nationality");
 
