@@ -12,30 +12,35 @@
     <title>Plan a Match</title>
     <jsp:include page="/style.jsp" />
 </head>
-<body class="container h-100 d-flex justify-content-center align-items-center">
+<body>
+<jsp:include page="/navbar.jsp" />
+<body>
+<div class="container h-100 d-flex justify-content-center align-items-center">
 
-<div class="col-md-5">
-    <form method="post">
+    <div class="col-md-5">
+        <form method="post">
 
-        <div class="form-group">
-            <label for="dateTime">Date et heure du match :</label><br>
-            <input class="form-control" required type="datetime-local" name="dateTime" id="dateTime"/><br>
-        </div>
-
-        <div class="form-group">
-            <label for="court">Court :</label><br>
-            <input class="form-control" required type="text" name="court" id="court"/>
-        </div>
-
-        <button type="submit" class="btn btn-primary">Valider</button>
-
-        <j:if test="${not empty result}">
-            <div class="p-3 mb-2 bg-danger text-white mt-3">
-                <j:out value="${ result }"></j:out>
+            <div class="form-group">
+                <label for="dateTime">Date et heure du match :</label><br>
+                <input class="form-control" required type="datetime-local" name="dateTime" id="dateTime"/><br>
             </div>
-        </j:if>
-    </form>
+
+            <div class="form-group">
+                <label for="court">Court :</label><br>
+                <input class="form-control" required type="text" name="court" id="court"/>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Valider</button>
+
+            <j:if test="${not empty result}">
+                <div class="p-3 mb-2 bg-danger text-white mt-3">
+                    <j:out value="${ result }"></j:out>
+                </div>
+            </j:if>
+        </form>
+    </div>
 </div>
+</body>
 
 </body>
 </html>

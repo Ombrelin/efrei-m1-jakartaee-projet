@@ -10,25 +10,34 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="j" %>
 <html>
 <head>
-    <title>Login</title>
+    <title>Register player</title>
     <jsp:include page="/style.jsp"/>
 </head>
-
+<body>
 <jsp:include page="/navbar.jsp"/>
-<div class="h-100 container d-flex justify-content-center align-items-center">
+<div class="container h-100 d-flex justify-content-center align-items-center">
     <div class="col-md-5">
         <form method="post">
+
             <div class="form-group">
-                <label for="login">Login :</label>
-                <input class="form-control" type="text" id="login" name="login" required/>
+                <label for="name">Name :</label>
+                <input class="form-control" required type="text" id="name" name="name"/>
             </div>
 
             <div class="form-group">
-                <label for="password">Password : </label>
-                <input class="form-control" type="password" id="password" name="password" required/>
+                <label for="nationality">Nationality : </label>
+                <input class="form-control" required type="text" id="nationality" name="nationality"/>
             </div>
 
-            <button type="submit" class="btn btn-primary">Login</button>
+            <div class="form-group">
+                <label for="gender">Gender : </label>
+                <select class="form-control" name="gender" id="gender">
+                    <option value="MALE">Male</option>
+                    <option value="FEMALE">Female</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Register</button>
 
             <j:if test="${not empty result}">
                 <div class="p-3 mb-2 bg-danger text-white mt-3">
@@ -38,5 +47,6 @@
         </form>
     </div>
 </div>
+
 </body>
 </html>
