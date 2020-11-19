@@ -10,30 +10,31 @@
 
 <body>
 <jsp:include page="/navbar.jsp"/>
-<div class="container mt-5">
-
-    <table class="table table-bordered">
-        <thead>
-        <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Team 1 Score</th>
-            <th scope="col">Team 2 Score</th>
-            <th scope="col">Date</th>
-            <th scope="col">Court</th>
-        </tr>
-        </thead>
-        <tbody>
-        <j:forEach items="${result}" var="match">
+<div class="container h-100 d-flex justify-content-center align-items-center">
+    <div class="mt-5">
+        <table class="table">
+            <thead>
             <tr>
-                <td>${match.id}</td>
-                <td>${match.team1Score}</td>
-                <td>${match.team2Score}</td>
-                <td>${match.dateTime}</td>
-                <td>${match.court}</td>
+                <th scope="col">Id</th>
+                <th scope="col">Team 1 Score</th>
+                <th scope="col">Team 2 Score</th>
+                <th scope="col">Date</th>
+                <th scope="col">Court</th>
             </tr>
-        </j:forEach>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            <j:forEach items="${result}" var="match">
+                <tr>
+                    <td>${match.id}</td>
+                    <td>${match.team1Score}</td>
+                    <td>${match.team2Score}</td>
+                    <td>${match.dateTime}</td>
+                    <td>${match.court}</td>
+                </tr>
+            </j:forEach>
+            </tbody>
+        </table>
+    </div>
 </div>
 </body>
 </html>
