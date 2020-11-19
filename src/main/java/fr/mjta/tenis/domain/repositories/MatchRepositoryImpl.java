@@ -61,16 +61,7 @@ public class MatchRepositoryImpl implements MatchRepository {
     }
 
     @Override
-    public Boolean prepareMatch(String id, Set<Player> team1, Set<Player> team2, Referee referee) {
-        TypedQuery<Match> query = entityManager.createQuery("UPDATE Match m SET m.prepared = true, m.team1 = :team1, m.team2 = :team2, m.referee =:referee WHERE m.id = :id", Match.class);
-        query.setParameter("id", id);
-        query.setParameter("team1", team1);
-        query.setParameter("team2", team2);
-        query.setParameter("referee", referee);
-        int rowUpdated = query.executeUpdate();
-        if(rowUpdated == 1){
-            return true;
-        }
-        return false;
+    public Match getById(String id){
+        return this.entityManager.find(Match.class, id);
     }
 }

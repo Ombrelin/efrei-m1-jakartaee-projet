@@ -10,6 +10,8 @@
 <html>
 <head>
     <title>Prepare Match</title>
+    <jsp:include page="/style.jsp" />
+
 </head>
 <body>
 
@@ -18,7 +20,7 @@
 
 <form method="post">
 
-    <input name="matchId" value="<j:out value='${match.id}'></j:out>"/>
+    <input name="matchId" hidden value="<j:out value='${match.id}'></j:out>"/>
 
     <div class="form-group">
         <label for="referee">Referee :</label>
@@ -84,6 +86,8 @@
 
 <script type="application/javascript">
     window.onload = () => {
+        console.log("init");
+
         const type = document.querySelector("#type");
         const team2player1form = document.querySelector("#team2");
         const team2player2form = document.querySelector("#team2");

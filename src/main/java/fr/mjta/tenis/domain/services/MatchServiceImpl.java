@@ -54,7 +54,13 @@ public class MatchServiceImpl implements MatchService {
     }
 
     @Override
-    public Boolean prepareMatch(String id, Set<Player> team1, Set<Player> team2, Referee referee) {
-        return matchRepository.prepareMatch(id, team1, team2, referee);
+    public void prepareMatch(String id, Set<Player> team1, Set<Player> team2, Referee referee) {
+        var match = matchRepository.getById(id);
+        team1.forEach(team -> team.getMatches().add(match));
+        team2.forEach(team -> team.getMatches().add(match));
+        match.getTeam1().addAll(team1);
+        match.getTeam2().addAll(team2);
+        match.setReferee(referee);
+        match.setPrepared(true);
     }
 }

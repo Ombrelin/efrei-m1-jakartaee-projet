@@ -23,5 +23,5 @@ public interface MatchRepository {
 
     Match getMatchToPrepare(String id);
 
-    Boolean prepareMatch(String id, Set<Player> team1, Set<Player> team2,  Referee referee);
+    Match getById(String id);
 }

@@ -39,13 +39,21 @@ public class Match {
     @ManyToOne(fetch = FetchType.EAGER)
     private Referee referee;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private Set<Player> team1;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private Set<Player> team2;
 
     public Match() {
+    }
+
+    public boolean isPrepared() {
+        return prepared;
+    }
+
+    public void setPrepared(boolean prepared) {
+        this.prepared = prepared;
     }
 
     public String getId() {
