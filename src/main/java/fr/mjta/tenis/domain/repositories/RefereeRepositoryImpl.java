@@ -1,5 +1,6 @@
 package fr.mjta.tenis.domain.repositories;
 
+import fr.mjta.tenis.domain.entities.Player;
 import fr.mjta.tenis.domain.entities.Referee;
 
 import javax.ejb.Stateless;
@@ -34,5 +35,11 @@ public class RefereeRepositoryImpl implements RefereeRepository {
     public void registerReferee(String name, String nationality) {
         Referee referee = new Referee(name, nationality);
         entityManager.persist(referee);
+    }
+
+    @Override
+    public List<Referee> getAll() {
+        var query = entityManager.createQuery("SELECT r FROM Referee r",Referee.class);
+        return query.getResultList();
     }
 }
