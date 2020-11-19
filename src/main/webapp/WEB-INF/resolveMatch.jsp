@@ -9,32 +9,45 @@
 <html>
 <head>
     <title>Resolve Match</title>
-    <jsp:include page="/style.jsp" />
+    <jsp:include page="/style.jsp"/>
 </head>
 <body>
-<jsp:include page="/navbar.jsp" />
-    <form method="post">
+<jsp:include page="/navbar.jsp"/>
+    <div class="container h-100 d-flex justify-content-center align-items-center">
 
-        <label for="team1score">Team 1 score :
-            <j:forEach items="${team1}" var="player">
-                <tr>
-                    <td>${player.Name}</td>
-                </tr>
-            </j:forEach>
-        </label>
-        <input required step="1" type="number" id="team1score" name="team1score"/>
+        <div class="col-md-5">
+            <form method="post">
 
-        <label for="team2score">Team 2 score :
-            <j:forEach items="${team2}" var="player">
-                <tr>
-                    <td>${player.Name}</td>
-                </tr>
-            </j:forEach></label>
-        <input required step="1" type="number" id="team2score" name="team2score"/>
+                <div class="form-group">
+                    <label for="team1score">Team 1 score :
+                        <j:forEach items="${team1}" var="player">
+                            <tr>
+                                <td>${player.Name}</td>
+                            </tr>
+                        </j:forEach>
+                    </label>
+                    <input class="form-control" required step="1" type="number" id="team1score" name="team1score"/>
+                </div>
 
-        <j:out value="${ result }"></j:out>
-        <br/>
-        <button type="submit">Resolve</button>
-    </form>
+                <div class="form-group">
+                    <label for="team2score">Team 2 score :
+                        <j:forEach items="${team2}" var="player">
+                            <tr>
+                                <td>${player.Name}</td>
+                            </tr>
+                        </j:forEach></label>
+                    <input class="form-control" required step="1" type="number" id="team2score" name="team2score"/>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Resolve</button>
+
+                <j:if test="${not empty result}">
+                    <div class="p-3 mb-2 bg-danger text-white mt-3">
+                        <j:out value="${ result }"></j:out>
+                    </div>
+                </j:if>
+            </form>
+        </div>
+    </div>
 </body>
 </html>

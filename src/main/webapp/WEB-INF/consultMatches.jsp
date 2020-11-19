@@ -4,39 +4,32 @@
 <html>
 <head>
     <title>Consult all matches</title>
-    <jsp:include page="/style.jsp" />
-    <style>
-        table {
-            font-family: arial, sans-serif;
-            border-collapse: collapse;
-            width: 100%;
-        }
+    <jsp:include page="/style.jsp"/>
 
-        td, th {
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 8px;
-        }
-
-        tr:nth-child(even) {
-            background-color: #dddddd;
-        }
-    </style>
 </head>
+<style>
+    .table > tbody > tr > td {
+        vertical-align: middle;
+    }
+</style>
 <body>
-    <jsp:include page="/navbar.jsp" />
-    <table>
+<jsp:include page="/navbar.jsp"/>
+
+<div class="container mt-5">
+    <table class="table">
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Team 1 Score</th>
-                <th>Team 2 Score</th>
-                <th>Date</th>
-                <th>Court</th>
-                <th>Status</th>
-                <th>Action</th>
-            </tr>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Team 1 Score</th>
+            <th scope="col">Team 2 Score</th>
+            <th scope="col">Date</th>
+            <th scope="col">Court</th>
+            <th scope="col">Status</th>
+            <th scope="col">Action</th>
+        </tr>
         </thead>
+        <tbody>
+
         <j:forEach items="${result}" var="match">
             <tr>
                 <td>${match.id}</td>
@@ -54,16 +47,16 @@
                 </j:choose>
                 <td>
                     <j:if test="${not match.finished}">
-                        <a href="<j:url value='/admin/prepareMatch?matchId=${match.id}'></j:url>">Prepare</a>
-                        <a href="<j:url value='/admin/resolveMatch?matchId=${match.id}'></j:url>">Resolve</a>
+                        <a class="btn btn-primary m-1"
+                           href="<j:url value='/admin/prepareMatch?matchId=${match.id}'></j:url>">Prepare</a>
+                        <a class="btn btn-primary m-1"
+                           href="<j:url value='/admin/resolveMatch?matchId=${match.id}'></j:url>">Resolve</a>
                     </j:if>
                 </td>
             </tr>
         </j:forEach>
+        </tbody>
     </table>
-
-    <a href="planMatch">Créer match</a>
-
-
+</div>
 </body>
 </html>
