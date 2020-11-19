@@ -6,7 +6,8 @@
     <title>Consult finished matches</title>
     <jsp:include page="/style.jsp" />
 </head>
-<body class="container mt-5">
+<body>
+<jsp:include page="/navbar.jsp" />
     <table class="table">
         <thead>
             <tr>

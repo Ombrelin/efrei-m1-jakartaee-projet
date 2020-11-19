@@ -10,8 +10,10 @@
 <html>
 <head>
     <title>Logged Out</title>
+    <jsp:include page="/style.jsp" />
 </head>
 <body>
+<jsp:include page="/navbar.jsp" />
 
 You have been logged out. <a href="<j:url value='/login'></j:url>">Log In</a>
 
