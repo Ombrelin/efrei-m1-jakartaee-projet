@@ -33,6 +33,9 @@ public class Match {
     @Column(columnDefinition = "boolean default false")
     private boolean finished;
 
+    @Column(columnDefinition = "boolean default false")
+    private boolean prepared;
+
     @ManyToOne(fetch = FetchType.EAGER)
     private Referee referee;
 

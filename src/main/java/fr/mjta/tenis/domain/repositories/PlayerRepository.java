@@ -7,4 +7,6 @@ import javax.ejb.Local;
 @Local
 public interface PlayerRepository {
     Player register(Player player);
+
+    Player getById(String id);
 }
