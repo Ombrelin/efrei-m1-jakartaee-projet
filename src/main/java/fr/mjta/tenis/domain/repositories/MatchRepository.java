@@ -3,7 +3,6 @@ package fr.mjta.tenis.domain.repositories;
 import fr.mjta.tenis.domain.entities.Match;
 
 import javax.ejb.Local;
-import javax.ejb.Stateless;
 import java.util.List;
 
 @Local
