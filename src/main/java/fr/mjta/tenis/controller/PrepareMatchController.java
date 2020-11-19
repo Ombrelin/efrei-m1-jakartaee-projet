@@ -80,6 +80,8 @@ public class PrepareMatchController extends HttpServlet {
         }else{
             request.setAttribute("result", "Failure");
         }
+
+        response.sendRedirect("/consultMatches");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
