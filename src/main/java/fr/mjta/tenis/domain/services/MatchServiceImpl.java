@@ -33,4 +33,14 @@ public class MatchServiceImpl implements MatchService {
     public List<Match> getFinishedMatches() {
         return matchRepository.getFinishedMatches();
     }
+
+    @Override
+    public Match getMatchToResolve(String id) {
+        return matchRepository.getMatchToResolve(id);
+    }
+
+    @Override
+    public Boolean resolveMatch(String id, int team1score, int team2score) {
+        return matchRepository.resolveMatch(id, team1score, team2score);
+    }
 }
