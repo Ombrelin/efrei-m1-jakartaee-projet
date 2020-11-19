@@ -1,6 +1,5 @@
 package fr.mjta.tenis.controller;
 
-import fr.mjta.tenis.domain.services.OrganizerService;
 import fr.mjta.tenis.domain.services.PlayerService;
 
 import javax.ejb.EJB;
@@ -11,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/registerPlayer")
+@WebServlet("/admin/registerPlayer")
 public class PlayerController extends HttpServlet {
     @EJB
     private PlayerService playerService;
@@ -22,14 +21,14 @@ public class PlayerController extends HttpServlet {
         String nationality = request.getParameter("nationality");
 
         boolean result;
-        if(!name.isEmpty() && !gender.isEmpty() && !nationality.isEmpty()){
+        if (!name.isEmpty() && !gender.isEmpty() && !nationality.isEmpty()) {
             playerService.register(name, gender, nationality);
             result = true;
-        }else{
+        } else {
             result = false;
         }
 
-        request.setAttribute("result", result ? "Create Successful" :"All fields are required");
+        request.setAttribute("result", result ? "Create Successful" : "All fields are required");
         doGet(request, response);
     }
 

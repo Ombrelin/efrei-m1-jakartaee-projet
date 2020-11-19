@@ -1,6 +1,5 @@
 package fr.mjta.tenis.controller;
 
-import fr.mjta.tenis.domain.services.OrganizerService;
 import fr.mjta.tenis.domain.services.RefereeService;
 
 import javax.ejb.EJB;
@@ -11,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/registerReferee")
+@WebServlet("/admin/registerReferee")
 public class RefereeController extends HttpServlet {
     @EJB
     private RefereeService refereeService;
@@ -21,7 +20,7 @@ public class RefereeController extends HttpServlet {
         String nationality = request.getParameter("nationality");
 
         var result = refereeService.registerReferee(name, nationality);
-        request.setAttribute("result", result ? "Referee registered" :"registration failed");
+        request.setAttribute("result", result ? "Referee registered" : "registration failed");
         doGet(request, response);
     }
 

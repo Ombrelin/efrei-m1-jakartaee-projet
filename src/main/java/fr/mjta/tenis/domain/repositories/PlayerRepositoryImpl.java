@@ -1,6 +1,5 @@
 package fr.mjta.tenis.domain.repositories;
 
-import fr.mjta.tenis.domain.entities.Gender;
 import fr.mjta.tenis.domain.entities.Player;
 
 import javax.ejb.Stateless;
