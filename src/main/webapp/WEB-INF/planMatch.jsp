@@ -14,7 +14,6 @@
 </head>
 <body>
 <jsp:include page="/navbar.jsp" />
-<body>
 <div class="container h-100 d-flex justify-content-center align-items-center">
 
     <div class="col-md-5">
@@ -40,7 +39,5 @@
         </form>
     </div>
 </div>
-</body>
-
 </body>
 </html>
