@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "match_table")
@@ -33,16 +34,24 @@ public class Match {
     @Column(columnDefinition = "boolean default false")
     private boolean finished;
 
+    @Column(columnDefinition = "boolean default false")
+    private boolean prepared;
+
     @ManyToOne(fetch = FetchType.EAGER)
     private Referee referee;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private Set<Player> team1;
-
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private Set<Player> team2;
+    @OneToMany(fetch = FetchType.EAGER)
+    private Set<Participation> participants;
 
     public Match() {
+    }
+
+    public boolean isPrepared() {
+        return prepared;
+    }
+
+    public void setPrepared(boolean prepared) {
+        this.prepared = prepared;
     }
 
     public String getId() {
@@ -109,19 +118,27 @@ public class Match {
         this.referee = referee;
     }
 
-    public Set<Player> getTeam1() {
-        return team1;
+    public Set<Participation> getParticipants() {
+        return participants;
     }
 
-    public void setTeam1(Set<Player> team1) {
-        this.team1 = team1;
+    public void setParticipants(Set<Participation> participants) {
+        this.participants = participants;
+    }
+
+    public Set<Player> getTeam1() {
+        return this.participants
+                .stream()
+                .filter(participation -> participation.getTeamNumber() == 1)
+                .map(Participation::getPlayer)
+                .collect(Collectors.toSet());
     }
 
     public Set<Player> getTeam2() {
-        return team2;
-    }
-
-    public void setTeam2(Set<Player> team2) {
-        this.team2 = team2;
+        return this.participants
+                .stream()
+                .filter(participation -> participation.getTeamNumber() == 2)
+                .map(Participation::getPlayer)
+                .collect(Collectors.toSet());
     }
 }
