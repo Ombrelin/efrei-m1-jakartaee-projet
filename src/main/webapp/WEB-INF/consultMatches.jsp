@@ -52,8 +52,8 @@
                 </j:choose>
                 <td>
                     <j:if test="${not match.finished}">
-                        <a href="/prepareMatch?matchId=${match.id}">Resolve</a>
-                        <a href="/resolveMatch?matchId=${match.id}">Prepare</a>
+                        <a href="<j:url value='/admin/prepareMatch?matchId=${match.id}'></j:url>">Prepare</a>
+                        <a href="<j:url value='/admin/resolveMatch?matchId=${match.id}'></j:url>">Resolve</a>
                     </j:if>
                 </td>
             </tr>

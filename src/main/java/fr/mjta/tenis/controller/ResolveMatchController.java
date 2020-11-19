@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Set;
 
-@WebServlet("/resolveMatch")
+@WebServlet("/admin/resolveMatch")
 public class ResolveMatchController extends HttpServlet {
     @EJB
     private MatchService matchService;
