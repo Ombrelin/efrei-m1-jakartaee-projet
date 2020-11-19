@@ -24,5 +24,5 @@ public interface MatchService {
 
     Match getMatchToPrepare(String id);
 
-    Boolean prepareMatch(String id, Set<Player> team1, Set<Player> team2, Referee referee);
+    void prepareMatch(String id, Set<Player> team1, Set<Player> team2, Referee referee);
 }

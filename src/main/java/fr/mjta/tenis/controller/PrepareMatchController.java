@@ -46,7 +46,7 @@ public class PrepareMatchController extends HttpServlet {
 
             Referee referee = refereeService.getById(refereeId);
 
-            var result = matchService.prepareMatch(matchId, team1, team2, referee);
+            matchService.prepareMatch(matchId, team1, team2, referee);
 
 
         }else if((!Objects.equals(request.getParameter("team1player1"), "")
@@ -66,6 +66,7 @@ public class PrepareMatchController extends HttpServlet {
             Player player2 = playerService.getById(team1player2);
             Player player3 = playerService.getById(team2player1);
             Player player4 = playerService.getById(team2player2);
+
             Set<Player> team1 = new HashSet<>();
             Set<Player> team2 = new HashSet<>();
             team1.add(player1);
@@ -75,7 +76,7 @@ public class PrepareMatchController extends HttpServlet {
 
             Referee referee = refereeService.getById(refereeId);
 
-            var result = matchService.prepareMatch(matchId, team1, team2, referee);
+            matchService.prepareMatch(matchId, team1, team2, referee);
         }else{
             request.setAttribute("result", "Failure");
         }
@@ -85,7 +86,6 @@ public class PrepareMatchController extends HttpServlet {
         String matchId = request.getParameter("matchId");
 
         var match = matchService.getMatchToPrepare(matchId);
-
         request.setAttribute("match", match);
         request.setAttribute("players", playerService.getAll());
         request.setAttribute("referees", refereeService.getAll());
