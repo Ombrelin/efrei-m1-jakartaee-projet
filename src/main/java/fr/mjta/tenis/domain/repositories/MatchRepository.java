@@ -19,8 +19,6 @@ public interface MatchRepository {
 
     Match getMatchToResolve(String id);
 
-    Boolean resolveMatch(String id, int team1score, int team2score, Duration duration);
-
     Match getMatchToPrepare(String id);
 
     Match getById(String id);

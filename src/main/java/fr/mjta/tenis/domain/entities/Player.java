@@ -12,9 +12,6 @@ public class Player extends Person {
     @Column
     private int worldRank;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    private Set<Match> matches;
-
     public Player() {
     }
 
@@ -23,14 +20,6 @@ public class Player extends Person {
         this.setName(name);
         this.setGender(gender);
         this.setNationality(nationality);
-    }
-
-    public Set<Match> getMatches() {
-        return matches;
-    }
-
-    public void setMatches(Set<Match> matches) {
-        this.matches = matches;
     }
 
     public int getWorldRank() {
