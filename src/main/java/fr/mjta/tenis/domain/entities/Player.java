@@ -12,6 +12,13 @@ public class Player extends Person {
     public Player() {
     }
 
+    public Player(String name, Gender gender, String nationality) {
+        super();
+        this.setName(name);
+        this.setGender(gender);
+        this.setNationality(nationality);
+    }
+
     public int getWorldRank() {
         return worldRank;
     }
