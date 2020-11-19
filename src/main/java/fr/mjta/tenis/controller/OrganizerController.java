@@ -8,7 +8,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Objects;
 
 @WebServlet("/login")
 public class OrganizerController extends HttpServlet {
@@ -19,8 +21,17 @@ public class OrganizerController extends HttpServlet {
         String login = request.getParameter("login");
         String password = request.getParameter("password");
 
-        var result = organizerService.login(login, password);
-        request.setAttribute("result", result ? "Login Successful" :"Login Failed");
+        if (Objects.equals(login, "") || Objects.equals(password, "")) {
+            request.setAttribute("result","Login Failed");
+            doGet(request, response);
+        }
+        else {
+            var result = organizerService.login(login, password);
+            request.setAttribute("result", result ? "Login Successful" : "Login Failed");
+
+            var session = request.getSession();
+            session.setAttribute("isAdmin", true);
+        }
         doGet(request, response);
     }
 

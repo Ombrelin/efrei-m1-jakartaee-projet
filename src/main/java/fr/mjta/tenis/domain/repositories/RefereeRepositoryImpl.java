@@ -1,6 +1,5 @@
 package fr.mjta.tenis.domain.repositories;
 
-import fr.mjta.tenis.domain.entities.Organizer;
 import fr.mjta.tenis.domain.entities.Referee;
 
 import javax.ejb.Stateless;
@@ -10,7 +9,7 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Stateless
-public class RefereeRepositoryImpl implements RefereeRepository{
+public class RefereeRepositoryImpl implements RefereeRepository {
     @PersistenceContext
     private EntityManager entityManager;
 

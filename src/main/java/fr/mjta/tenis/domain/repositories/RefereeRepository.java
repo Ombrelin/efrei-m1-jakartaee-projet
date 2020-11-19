@@ -8,7 +8,10 @@ import java.util.List;
 @Local
 public interface RefereeRepository {
     Referee getById(String id);
+
     Referee getByName(String name);
+
     List<Referee> getByNationality(String nationality);
+
     void registerReferee(String name, String Nationality);
 }
