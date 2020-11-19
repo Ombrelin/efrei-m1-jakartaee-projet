@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/consultMatches")
+@WebServlet("/admin/consultMatches")
 public class ConsultMatchesController extends HttpServlet {
 	@EJB
 	private MatchService matchService;
