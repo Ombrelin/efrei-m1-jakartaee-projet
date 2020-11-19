@@ -31,21 +31,17 @@
                 <a class="nav-link" href="<j:url value='/consultFinishedMatches'></j:url>">Consult Finished Matches</a>
             </li>
         </ul>
-
-        <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <j:choose>
-                        <j:when test="${sessionScope.isAdmin}">
-                            <a class="nav-link" href="<j:url value='/logout'></j:url>">Log out</a>
-                        </j:when>
-                        <j:otherwise>
-                            <a class="nav-link" href="<j:url value='/login'></j:url>">Log in</a>
-                        </j:otherwise>
-                    </j:choose>
-                </li>
-            </ul>
-        </div>
-
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <j:choose>
+                    <j:when test="${sessionScope.isAdmin}">
+                        <a class="nav-link" href="<j:url value='/logout'></j:url>">Log out</a>
+                    </j:when>
+                    <j:otherwise>
+                        <a class="nav-link" href="<j:url value='/login'></j:url>">Log in</a>
+                    </j:otherwise>
+                </j:choose>
+            </li>
+        </ul>
     </div>
 </nav>
