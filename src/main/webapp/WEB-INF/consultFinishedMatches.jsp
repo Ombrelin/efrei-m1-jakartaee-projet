@@ -7,7 +7,7 @@
     <jsp:include page="/style.jsp" />
 </head>
 <body class="container mt-5">
-    <table class="table">
+    <table class="table table-bordered">
         <thead>
             <tr>
                 <th scope="col">Id</th>
@@ -17,17 +17,17 @@
                 <th scope="col">Court</th>
             </tr>
         </thead>
-        <j:forEach items="${result}" var="match">
-            <tr>
-                <td>${match.id}</td>
-                <td>${match.team1Score}</td>
-                <td>${match.team2Score}</td>
-                <td>${match.dateTime}</td>
-                <td>${match.court}</td>
-            </tr>
-        </j:forEach>
+        <tbody>
+            <j:forEach items="${result}" var="match">
+                <tr>
+                    <td>${match.id}</td>
+                    <td>${match.team1Score}</td>
+                    <td>${match.team2Score}</td>
+                    <td>${match.dateTime}</td>
+                    <td>${match.court}</td>
+                </tr>
+            </j:forEach>
+        </tbody>
     </table>
-
-
 </body>
 </html>
