@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.Objects;
 import java.util.Set;
 
 @WebServlet("/resolveMatch")
@@ -19,13 +20,16 @@ public class ResolveMatchController extends HttpServlet {
     private MatchService matchService;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int team1score = Integer.parseInt(request.getParameter("team1score"));
-        int team2score = Integer.parseInt(request.getParameter("team2score"));
-        String matchId = request.getParameter("matchId");
+        if (!Objects.equals(request.getParameter("team1score"), "") && !Objects.equals(request.getParameter("team2score"), "")) {
+            int team1score = Integer.parseInt(request.getParameter("team1score"));
+            int team2score = Integer.parseInt(request.getParameter("team2score"));
+            String matchId = request.getParameter("matchId");
 
-        var result = matchService.resolveMatch(matchId, team1score, team2score);
-        //request.setAttribute("result", result ? "Match successfully resolved" :"Error occurred while resolving math");
-        this.getServletContext().getRequestDispatcher("/WEB-INF/consultMatches.jsp").forward(request, response);
+            var result = matchService.resolveMatch(matchId, team1score, team2score);
+            //request.setAttribute("result", result ? "Match successfully resolved" :"Error occurred while resolving math");
+
+        }
+        response.sendRedirect("/WEB-INF/consultMatches.jsp");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

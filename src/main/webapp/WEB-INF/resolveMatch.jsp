@@ -20,7 +20,7 @@
                 </tr>
             </j:forEach>
         </label>
-        <input required type="number" id="team1score" name="team1score"/>
+        <input required step="1" type="number" id="team1score" name="team1score"/>
 
         <label for="team2score">Team 2 score :
             <j:forEach items="${team2}" var="player">
@@ -28,7 +28,7 @@
                     <td>${player.Name}</td>
                 </tr>
             </j:forEach></label>
-        <input required type="number" id="team2score" name="team2score"/>
+        <input required step="1" type="number" id="team2score" name="team2score"/>
 
         <j:out value="${ result }"></j:out>
         <br/>

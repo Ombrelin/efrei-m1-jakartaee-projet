@@ -4,7 +4,6 @@ import fr.mjta.tenis.domain.entities.Match;
 
 import javax.ejb.Local;
 import javax.ejb.Stateless;
-import javax.swing.text.StyledEditorKit;
 import java.util.List;
 
 @Local
