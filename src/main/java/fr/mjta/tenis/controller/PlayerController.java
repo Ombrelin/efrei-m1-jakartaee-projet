@@ -33,6 +33,6 @@ public class PlayerController extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        this.getServletContext().getRequestDispatcher("/WEB-INF/register-player.jsp").forward(request, response);
+        this.getServletContext().getRequestDispatcher("/WEB-INF/registerPlayer.jsp").forward(request, response);
     }
 }

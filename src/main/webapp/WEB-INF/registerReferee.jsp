@@ -11,33 +11,35 @@
 <html>
 <head>
     <title>Register Referee</title>
-    <jsp:include page="/style.jsp" />
+    <jsp:include page="/style.jsp"/>
 </head>
-<body class="container h-100 d-flex justify-content-center align-items-center">
+<body>
 
-<div class="col-md-5">
-    <form method="post">
+<jsp:include page="/navbar.jsp"/>
+<div class="container h-100 d-flex justify-content-center align-items-center">
+    <div class="col-md-5">
+        <form method="post">
 
-        <div class="form-group">
-            <label for="name">Name :</label>
-            <input class="form-control" required type="text" id="name" name="name"/>
-        </div>
-
-        <div class="form-group">
-            <label for="nationality">Nationality : </label>
-            <input class="form-control" required type="text" id="nationality" name="nationality"/>
-        </div>
-
-        <button type="submit" class="btn btn-primary">Register</button>
-
-        <j:if test="${not empty result}">
-            <div class="p-3 mb-2 bg-danger text-white mt-3">
-                <j:out value="${ result }"></j:out>
+            <div class="form-group">
+                <label for="name">Name :</label>
+                <input class="form-control" required type="text" id="name" name="name"/>
             </div>
-        </j:if>
-    </form>
+
+            <div class="form-group">
+                <label for="nationality">Nationality : </label>
+                <input class="form-control" required type="text" id="nationality" name="nationality"/>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Register</button>
+
+            <j:if test="${not empty result}">
+                <div class="p-3 mb-2 bg-danger text-white mt-3">
+                    <j:out value="${ result }"></j:out>
+                </div>
+            </j:if>
+        </form>
+    </div>
+
 </div>
-
-
 </body>
 </html>
