@@ -4,20 +4,25 @@
 <html>
 <head>
     <title>Consult finished matches</title>
-    <jsp:include page="/style.jsp" />
+    <jsp:include page="/style.jsp"/>
+
 </head>
+
 <body>
-<jsp:include page="/navbar.jsp" />
-    <table class="table">
+<jsp:include page="/navbar.jsp"/>
+<div class="container mt-5">
+
+    <table class="table table-bordered">
         <thead>
-            <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Team 1 Score</th>
-                <th scope="col">Team 2 Score</th>
-                <th scope="col">Date</th>
-                <th scope="col">Court</th>
-            </tr>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Team 1 Score</th>
+            <th scope="col">Team 2 Score</th>
+            <th scope="col">Date</th>
+            <th scope="col">Court</th>
+        </tr>
         </thead>
+        <tbody>
         <j:forEach items="${result}" var="match">
             <tr>
                 <td>${match.id}</td>
@@ -27,8 +32,8 @@
                 <td>${match.court}</td>
             </tr>
         </j:forEach>
+        </tbody>
     </table>
-
-
+</div>
 </body>
 </html>
