@@ -13,7 +13,12 @@
 </head>
 <body>
 
+<j:out value="${match.dateTime}"/>
+<j:out value="${match.court}"/>
+
 <form method="post">
+
+    <input name="matchId" value="<j:out value='${match.id}'></j:out>"/>
 
     <div class="form-group">
         <label for="referee">Referee :</label>
