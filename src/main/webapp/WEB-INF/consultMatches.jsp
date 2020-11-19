@@ -4,6 +4,7 @@
 <html>
 <head>
     <title>Consult all matches</title>
+    <jsp:include page="/style.jsp" />
     <style>
         table {
             font-family: arial, sans-serif;
@@ -23,6 +24,7 @@
     </style>
 </head>
 <body>
+    <jsp:include page="/navbar.jsp" />
     <table>
         <thead>
             <tr>

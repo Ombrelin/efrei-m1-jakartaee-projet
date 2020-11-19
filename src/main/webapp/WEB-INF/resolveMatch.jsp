@@ -9,8 +9,10 @@
 <html>
 <head>
     <title>Resolve Match</title>
+    <jsp:include page="/style.jsp" />
 </head>
 <body>
+<jsp:include page="/navbar.jsp" />
     <form method="post">
 
         <label for="team1score">Team 1 score :
