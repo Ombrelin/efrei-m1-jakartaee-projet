@@ -1,36 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="j" %>
+<j:set var="contextPath" value="${pageContext.request.contextPath}" />
 <html>
 <head>
     <title>Consult finished matches</title>
-    <style>
-        table {
-            font-family: arial, sans-serif;
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        td, th {
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 8px;
-        }
-
-        tr:nth-child(even) {
-            background-color: #dddddd;
-        }
-    </style>
+    <link href="${contextPath}/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-    <table>
+<body class="container mt-5">
+    <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Team 1 Score</th>
-                <th>Team 2 Score</th>
-                <th>Date</th>
-                <th>Court</th>
+                <th scope="col">Id</th>
+                <th scope="col">Team 1 Score</th>
+                <th scope="col">Team 2 Score</th>
+                <th scope="col">Date</th>
+                <th scope="col">Court</th>
             </tr>
         </thead>
         <j:forEach items="${result}" var="match">
