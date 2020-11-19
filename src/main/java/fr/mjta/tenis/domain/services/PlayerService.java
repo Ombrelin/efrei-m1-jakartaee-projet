@@ -8,6 +8,6 @@ import javax.ejb.Local;
 @Local
 public interface PlayerService {
 
-    boolean register(String name, String gender, String nationality);
+    void register(String name, String gender, String nationality);
 
 }

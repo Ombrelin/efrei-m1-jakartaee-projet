@@ -16,7 +16,11 @@ public class PlayerServiceImpl implements PlayerService {
     private PlayerRepository playerRepository;
 
     @Override
-    public boolean register(String name, String gender, String nationality) {
-        return playerRepository.register(name, gender, nationality);
+    public void register(String name, String gender, String nationality) {
+        var player = new Player();
+        player.setName(name);
+        player.setNationality(nationality);
+        player.setGender(Gender.valueOf(gender));
+        playerRepository.register(player);
     }
 }

@@ -22,13 +22,14 @@ public class PlayerController extends HttpServlet {
         String nationality = request.getParameter("nationality");
 
         boolean result;
-        if(name.isEmpty() || gender.isEmpty() || nationality.isEmpty()){
-            result = false;
+        if(!name.isEmpty() && !gender.isEmpty() && !nationality.isEmpty()){
+            playerService.register(name, gender, nationality);
+            result = true;
         }else{
-            result = playerService.register(name, gender, nationality);
+            result = false;
         }
-        
-        request.setAttribute("result", result ? "Create Successful" :"Create Failed");
+
+        request.setAttribute("result", result ? "Create Successful" :"All fields are required");
         doGet(request, response);
     }
 

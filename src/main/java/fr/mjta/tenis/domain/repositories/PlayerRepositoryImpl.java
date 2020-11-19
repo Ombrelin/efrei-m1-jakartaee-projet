@@ -14,9 +14,8 @@ public class PlayerRepositoryImpl implements PlayerRepository {
     private EntityManager entityManager;
 
     @Override
-    public boolean register(String name, String gender, String nationality) {
-        Player player = new Player(name, Gender.valueOf(gender), nationality);
-        entityManager.persist(player);
-        return entityManager.contains(player);
+    public Player register(Player p) {
+        entityManager.persist(p);
+        return p;
     }
 }
