@@ -29,10 +29,16 @@ public class OrganizerController extends HttpServlet {
             var result = organizerService.login(login, password);
             request.setAttribute("result", result ? "Login Successful" : "Login Failed");
 
+            if(!result){
+                doGet(request, response);
+                return;
+            }
+
             var session = request.getSession();
             session.setAttribute("isAdmin", true);
+
+            response.sendRedirect(request.getContextPath() + "/admin/consultMatches");
         }
-        doGet(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

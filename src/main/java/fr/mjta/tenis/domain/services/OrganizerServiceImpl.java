@@ -14,7 +14,11 @@ public class OrganizerServiceImpl implements OrganizerService {
 
     @Override
     public boolean login(String login, String password) {
-        Organizer organizer = organizerRepository.getByLogin(login);
-        return BCrypt.checkpw(password, organizer.getPassword());
+        var organizer = organizerRepository.getByLogin(login);
+        if(organizer.isEmpty()){
+            return false;
+        }
+
+        return BCrypt.checkpw(password, organizer.get().getPassword());
     }
 }
