@@ -30,6 +30,11 @@
             </j:forEach></label>
         <input required step="1" type="number" id="team2score" name="team2score"/>
 
+        <label for="duration">Duration : </label>
+        <input required type="time" id="duration" name="duration" step="1"/>
+
+        <input hidden type="text" id="matchId" name="matchId" value="<j:out value="${ matchId }"></j:out>">
+
         <j:out value="${ result }"></j:out>
         <br/>
         <button type="submit">Resolve</button>
