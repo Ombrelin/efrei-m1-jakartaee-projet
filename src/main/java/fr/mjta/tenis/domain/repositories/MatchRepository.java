@@ -4,6 +4,7 @@ import fr.mjta.tenis.domain.entities.Match;
 
 import javax.ejb.Local;
 import javax.ejb.Stateless;
+import javax.swing.text.StyledEditorKit;
 import java.util.List;
 
 @Local
@@ -13,4 +14,8 @@ public interface MatchRepository {
     List<Match> getMatches();
 
     List<Match> getFinishedMatches();
+
+    Match getMatchToResolve(String id);
+
+    Boolean resolveMatch(String id, int team1score, int team2score);
 }
