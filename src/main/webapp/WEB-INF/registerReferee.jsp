@@ -8,11 +8,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="j" %>
-<j:set var="contextPath" value="${pageContext.request.contextPath}" />
 <html>
 <head>
     <title>Register Referee</title>
-    <link href="${contextPath}/css/bootstrap.min.css" rel="stylesheet">
+    <jsp:include page="/style.jsp" />
 </head>
 <body class="container h-100 d-flex justify-content-center align-items-center">
 
