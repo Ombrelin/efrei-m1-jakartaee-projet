@@ -18,7 +18,7 @@ import java.util.Objects;
 import java.util.Set;
 
 @WebServlet("/admin/prepareMatch")
-public class prepareMatchController extends HttpServlet {
+public class PrepareMatchController extends HttpServlet {
     @EJB
     private MatchService matchService;
     @EJB
@@ -27,7 +27,11 @@ public class prepareMatchController extends HttpServlet {
     private RefereeService refereeService;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if ((!Objects.equals(request.getParameter("team1player1"), "") && !Objects.equals(request.getParameter("team2player1"), "") && !Objects.equals(request.getParameter("referee"), "") && !Objects.equals(request.getParameter("matchId"), ""))) {
+        if ((!Objects.equals(request.getParameter("team1player1"), "")
+                && !Objects.equals(request.getParameter("team2player1"), "")
+                && !Objects.equals(request.getParameter("referee"), "")
+                && !Objects.equals(request.getParameter("matchId"), ""))) {
+
             String team1player1 = request.getParameter("team1player1");
             String team2player1 = request.getParameter("team2player1");
             String refereeId = request.getParameter("referee");
@@ -35,8 +39,8 @@ public class prepareMatchController extends HttpServlet {
 
             Player player1 = playerService.getById(team1player1);
             Player player2 = playerService.getById(team2player1);
-            Set<Player> team1 = new HashSet<Player>();
-            Set<Player> team2 = new HashSet<Player>();
+            Set<Player> team1 = new HashSet<>();
+            Set<Player> team2 = new HashSet<>();
             team1.add(player1);
             team2.add(player2);
 
@@ -45,7 +49,12 @@ public class prepareMatchController extends HttpServlet {
             var result = matchService.prepareMatch(matchId, team1, team2, referee);
 
 
-        }else if((!Objects.equals(request.getParameter("team1player1"), "") && !Objects.equals(request.getParameter("team1player2"), "") && !Objects.equals(request.getParameter("team2player1"), "") && !Objects.equals(request.getParameter("team2player2"), "") && !Objects.equals(request.getParameter("referee"), ""))){
+        }else if((!Objects.equals(request.getParameter("team1player1"), "")
+                && !Objects.equals(request.getParameter("team1player2"), "")
+                && !Objects.equals(request.getParameter("team2player1"), "")
+                && !Objects.equals(request.getParameter("team2player2"), "")
+                && !Objects.equals(request.getParameter("referee"), ""))){
+
             String team1player1 = request.getParameter("team1player1");
             String team1player2 = request.getParameter("team1player2");
             String team2player1 = request.getParameter("team2player1");
@@ -57,8 +66,8 @@ public class prepareMatchController extends HttpServlet {
             Player player2 = playerService.getById(team1player2);
             Player player3 = playerService.getById(team2player1);
             Player player4 = playerService.getById(team2player2);
-            Set<Player> team1 = new HashSet<Player>();
-            Set<Player> team2 = new HashSet<Player>();
+            Set<Player> team1 = new HashSet<>();
+            Set<Player> team2 = new HashSet<>();
             team1.add(player1);
             team1.add(player2);
             team2.add(player3);
@@ -78,6 +87,8 @@ public class prepareMatchController extends HttpServlet {
         var match = matchService.getMatchToPrepare(matchId);
 
         request.setAttribute("match", match);
+        request.setAttribute("players", playerService.getAll());
+        request.setAttribute("referees", refereeService.getAll());
 
         this.getServletContext().getRequestDispatcher("/WEB-INF/prepareMatch.jsp").forward(request, response);
     }

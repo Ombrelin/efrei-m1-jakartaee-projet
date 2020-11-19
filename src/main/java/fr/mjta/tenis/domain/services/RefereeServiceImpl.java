@@ -5,6 +5,7 @@ import fr.mjta.tenis.domain.repositories.RefereeRepository;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import java.util.List;
 
 @Stateless
 public class RefereeServiceImpl implements RefereeService {
@@ -21,5 +22,10 @@ public class RefereeServiceImpl implements RefereeService {
     @Override
     public Referee getById(String id) {
         return refereeRepository.getById(id);
+    }
+
+    @Override
+    public List<Referee> getAll() {
+        return refereeRepository.getAll();
     }
 }

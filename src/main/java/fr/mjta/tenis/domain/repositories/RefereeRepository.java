@@ -1,5 +1,6 @@
 package fr.mjta.tenis.domain.repositories;
 
+import fr.mjta.tenis.domain.entities.Player;
 import fr.mjta.tenis.domain.entities.Referee;
 
 import javax.ejb.Local;
@@ -14,4 +15,6 @@ public interface RefereeRepository {
     List<Referee> getByNationality(String nationality);
 
     void registerReferee(String name, String Nationality);
+
+    List<Referee> getAll();
 }
