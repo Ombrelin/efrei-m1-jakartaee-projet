@@ -10,12 +10,11 @@
 <head>
     <title>Rolang Garros Planning</title>
     <jsp:include page="/style.jsp"/>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="j" %>
 </head>
 <body>
 <div class="grass">
-
     <div class="court-container">
-
         <div class="court-outline">
             <div class="court-aspect">
                 <div class="court-boundaries">
@@ -36,14 +35,12 @@
                 </div>
             </div>
         </div>
-
     </div>
-
-
 </div>
+<a href="<j:url value='/consultFinishedMatches'></j:url>" class="btn-lg btn btn-outline-dark center text-center">Enter</a>
 </body>
 <style>
-    html, body, body * {
+    html, body{
         margin: 0;
         padding: 0;
     }
@@ -51,11 +48,14 @@
         -webkit-box-sizing: border-box;
         box-sizing: border-box;
     }
-    *, *:before, *:after {
-        -webkit-box-sizing: inherit;
-        box-sizing: inherit;
-    }
     body {
+    }
+    .center {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 2rem;
     }
     .grass {
         position: absolute;
