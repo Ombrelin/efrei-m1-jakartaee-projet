@@ -7,5 +7,6 @@ import javax.ejb.Local;
 @Local
 public interface OrganizerRepository {
     Organizer getById(String id);
+
     Organizer getByLogin(String login);
 }
