@@ -11,7 +11,6 @@
 
     <div class="collapse navbar-collapse" id="navbarsExample06">
         <ul class="navbar-nav mr-auto">
-            <j:out value="${contextPath}"/>
             <j:if test="${sessionScope.isAdmin}">
                 <li class="nav-item ${currentPage eq contextPath+='planMatch.jsp' ? ' active' : ''}">
                     <a class="nav-link" href="<j:url value='/admin/planMatch'></j:url>">Plan Match</a>
