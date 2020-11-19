@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Objects;
 
 @WebServlet("/registerReferee")
 public class RefereeController extends HttpServlet {
@@ -17,11 +18,15 @@ public class RefereeController extends HttpServlet {
     private RefereeService refereeService;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String name = request.getParameter("name");
-        String nationality = request.getParameter("nationality");
+        if (!Objects.equals(request.getParameter("team1score"), "") && !Objects.equals(request.getParameter("team2score"), "")) {
+            String name = request.getParameter("name");
+            String nationality = request.getParameter("nationality");
 
-        var result = refereeService.registerReferee(name, nationality);
-        request.setAttribute("result", result ? "Referee registered" :"registration failed");
+            var result = refereeService.registerReferee(name, nationality);
+            request.setAttribute("result", result ? "Referee registered" :"registration failed");
+        }else {
+            request.setAttribute("result", "Failure");
+        }
         doGet(request, response);
     }
 
