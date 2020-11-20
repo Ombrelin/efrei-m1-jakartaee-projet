@@ -87,7 +87,6 @@
 <script type="application/javascript">
 
         const handleChangeType = (value) => {
-            console.log(value);
             const team1player2form = document.querySelector("#team1player2form");
             const team2player2form = document.querySelector("#team2player2form");
             const team2player1 = document.querySelector("#team2player1");
