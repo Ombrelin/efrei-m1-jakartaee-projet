@@ -42,6 +42,15 @@ public class OrganizerController extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        this.getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
+
+        var session = request.getSession();
+        var isAdmin = (Boolean) session.getAttribute("isAdmin");
+
+        if(isAdmin != null && isAdmin){
+            response.sendRedirect(request.getContextPath() + "/admin/consultMatches");
+        }
+        else {
+            this.getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
+        }
     }
 }
