@@ -32,9 +32,9 @@
 
             <div class="form-group">
                 <label for="type">Match type : </label>
-                <select class="form-control" id="type">
+                <select onchange="handleChangeType(this.value)" class="form-control" id="type">
                     <option selected value="simple">Simple</option>
-                    <option value="simple">Double</option>
+                    <option value="double">Double</option>
                 </select>
             </div>
 
@@ -49,7 +49,7 @@
                 </select>
             </div>
 
-            <div id="team2player1form" class="form-group d-none">
+            <div id="team1player2form" class="form-group d-none">
                 <label for="type">Player 2 : </label>
                 <select class="form-control" id="team1player2" name="team1player2">
                     <j:forEach items="${ players }" var="player">
@@ -60,7 +60,7 @@
 
             <h3 class="mt-4">Team 2 Players</h3>
 
-            <div id="team2player2form" class="form-group">
+            <div  class="form-group">
                 <label for="type">Player 1 : </label>
                 <select class="form-control" id="team2player1" name="team2player1">
                     <j:forEach items="${ players }" var="player">
@@ -69,7 +69,7 @@
                 </select>
             </div>
 
-            <div class="form-group d-none">
+            <div class="form-group d-none" id="team2player2form">
                 <label for="type">Player 2 : </label>
                     <select class="form-control" id="team2player2" name="team2player2">
                     <j:forEach items="${ players }" var="player">
@@ -83,31 +83,28 @@
 
         </form>
     </div>
-
+</div>
 <script type="application/javascript">
-    window.onload = () => {
-        console.log("init");
 
-        const type = document.querySelector("#type");
-        const team2player1form = document.querySelector("#team2");
-        const team2player2form = document.querySelector("#team2");
-        const team2player1 = document.querySelector("#team2player1");
-        const team2player2 = document.querySelector("#team2player2");
-
-        type.addEventListener("change", () => {
-            if(type.value === "simple"){
-                team2player1form.className = "d-none";
-                team2player1form.className = "d-none";
+        const handleChangeType = (value) => {
+            console.log(value);
+            const team1player2form = document.querySelector("#team1player2form");
+            const team2player2form = document.querySelector("#team2player2form");
+            const team2player1 = document.querySelector("#team2player1");
+            const team2player2 = document.querySelector("#team2player2");
+            if(value === "simple"){
+                team1player2form.className = "d-none";
+                team2player2form.className = "d-none";
                 team2player1.required = false;
                 team2player2.required = false;
             }
-            else if(type.value === "double"){
-                team2player2form.className = "form-group";
+            else if(value === "double"){
+                team1player2form.className = "form-group";
                 team2player2form.className = "form-group";
                 team2player1.required = true;
                 team2player2.required = true;
             }
-        });
+
     }
 </script>
 
