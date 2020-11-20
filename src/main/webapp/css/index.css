@@ -26,6 +26,13 @@ body {
     left: 50%;
     transform: translate(-50%, 0);
 }
+.filter-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(black, grey, white);
+    opacity: 0.5;
+}
 .grass {
     position: absolute;
     width: 100%;
