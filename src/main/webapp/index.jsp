@@ -32,8 +32,11 @@
         </div>
     </div>
 </div>
+<div class="filter-bg">
+
+</div>
 <h1 class="title m-4 text-dark">Rolland Garros Planning</h1>
-<a href="<j:url value='/consultFinishedMatches'></j:url>" class="btn-lg btn btn-outline-dark enter text-center">Enter</a>
+<a href="<j:url value='/consultFinishedMatches'></j:url>" class="btn-lg btn btn-outline-light enter text-center">Enter</a>
 <a href="<j:url value='/login'></j:url>" class="m-4 btn-lg btn btn-outline-dark log-in text-center">Log in</a>
 </body>
 </html>
