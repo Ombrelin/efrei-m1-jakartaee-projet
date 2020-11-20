@@ -11,78 +11,78 @@
 <head>
     <title>Prepare Match</title>
     <jsp:include page="/style.jsp" />
-
 </head>
 <body>
+<jsp:include page="/navbar.jsp" />
+<div class="container h-100 d-flex justify-content-center align-items-center">
 
-<j:out value="${match.dateTime}"/>
-<j:out value="${match.court}"/>
+    <div class="col-md-5">
+        <form method="post">
 
-<form method="post">
+            <input name="matchId" hidden value="<j:out value='${match.id}'></j:out>"/>
 
-    <input name="matchId" hidden value="<j:out value='${match.id}'></j:out>"/>
+            <div class="form-group">
+                <label for="referee">Referee :</label>
+                <select required class="form-control" id="referee" name="referee">
+                    <j:forEach items="${ referees }" var="referee">
+                        <option value="<j:out value='${referee.id}'></j:out>"><j:out value='${referee.name}'></j:out></option>
+                    </j:forEach>
+                </select>
+            </div>
 
-    <div class="form-group">
-        <label for="referee">Referee :</label>
-        <select required class="form-control" id="referee" name="referee">
-            <j:forEach items="${ referees }" var="referee">
-                <option value="<j:out value='${referee.id}'></j:out>"><j:out value='${referee.name}'></j:out></option>
-            </j:forEach>
-        </select>
+            <div class="form-group">
+                <label for="type">Match type : </label>
+                <select class="form-control" id="type">
+                    <option selected value="simple">Simple</option>
+                    <option value="simple">Double</option>
+                </select>
+            </div>
+
+            <h3 class="mt-4">Team 1 Players</h3>
+
+            <div class="form-group">
+                <label for="type">Player 1 : </label>
+                <select class="form-control" id="team1player1" name="team1player1">
+                    <j:forEach items="${ players }" var="player">
+                        <option value="<j:out value='${player.id}'></j:out>"><j:out value='${player.name}'></j:out></option>
+                    </j:forEach>
+                </select>
+            </div>
+
+            <div id="team2player1form" class="form-group d-none">
+                <label for="type">Player 2 : </label>
+                <select class="form-control" id="team1player2" name="team1player2">
+                    <j:forEach items="${ players }" var="player">
+                        <option value="<j:out value='${player.id}'></j:out>"><j:out value='${player.name}'></j:out></option>
+                    </j:forEach>
+                </select>
+            </div>
+
+            <h3 class="mt-4">Team 2 Players</h3>
+
+            <div id="team2player2form" class="form-group">
+                <label for="type">Player 1 : </label>
+                <select class="form-control" id="team2player1" name="team2player1">
+                    <j:forEach items="${ players }" var="player">
+                        <option value="<j:out value='${player.id}'></j:out>"><j:out value='${player.name}'></j:out></option>
+                    </j:forEach>
+                </select>
+            </div>
+
+            <div class="form-group d-none">
+                <label for="type">Player 2 : </label>
+                    <select class="form-control" id="team2player2" name="team2player2">
+                    <j:forEach items="${ players }" var="player">
+                        <option value="<j:out value='${player.id}'></j:out>"><j:out value='${player.name}'></j:out></option>
+                    </j:forEach>
+                </select>
+            </div>
+
+
+            <button class="btn btn-primary" type="submit">Prepare</button>
+
+        </form>
     </div>
-
-    <div class="form-group">
-        <label for="type">Match type : </label>
-        <select class="form-control" id="type">
-            <option selected value="simple">Simple</option>
-            <option value="simple">Double</option>
-        </select>
-    </div>
-
-    <h3>Team 1 Players</h3>
-
-    <div class="form-group">
-        <label for="type">Player 1 : </label>
-        <select class="form-control" id="team1player1" name="team1player1">
-            <j:forEach items="${ players }" var="player">
-                <option value="<j:out value='${player.id}'></j:out>"><j:out value='${player.name}'></j:out></option>
-            </j:forEach>
-        </select>
-    </div>
-
-    <div id="team2player1form" class="form-group d-none">
-        <label for="type">Player 2 : </label>
-        <select class="form-control" id="team1player2" name="team1player2">
-            <j:forEach items="${ players }" var="player">
-                <option value="<j:out value='${player.id}'></j:out>"><j:out value='${player.name}'></j:out></option>
-            </j:forEach>
-        </select>
-    </div>
-
-    <h3>Team 2 Players</h3>
-
-    <div id="team2player2form" class="form-group">
-        <label for="type">Player 1 : </label>
-        <select class="form-control" id="team2player1" name="team2player1">
-            <j:forEach items="${ players }" var="player">
-                <option value="<j:out value='${player.id}'></j:out>"><j:out value='${player.name}'></j:out></option>
-            </j:forEach>
-        </select>
-    </div>
-
-    <div class="form-group d-none">
-        <label for="type">Player 2 : </label>
-            <select class="form-control" id="team2player2" name="team2player2">
-            <j:forEach items="${ players }" var="player">
-                <option value="<j:out value='${player.id}'></j:out>"><j:out value='${player.name}'></j:out></option>
-            </j:forEach>
-        </select>
-    </div>
-
-
-    <button type="submit">Prepare</button>
-
-</form>
 
 <script type="application/javascript">
     window.onload = () => {
