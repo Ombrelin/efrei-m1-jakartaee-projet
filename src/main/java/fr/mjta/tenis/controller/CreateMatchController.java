@@ -28,26 +28,24 @@ public class CreateMatchController extends HttpServlet {
             LocalDateTime dateTime = LocalDateTime.parse(request.getParameter("dateTime"));
             String courtId = request.getParameter("court");
 
-            Court court;
+            Court court = null;
 
             try {
                 court = courtService.get(courtId);
             }
             catch (Exception e) {
-                request.setAttribute("result", new Result<>(true, "This court doesn't exist"));
-                return;
+                request.setAttribute("result", new Result<>(false, "This court doesn't exist"));
             }
 
-
-            if(LocalDateTime.now().isBefore(dateTime)){
-                matchService.planMatch(dateTime, court);
-                request.setAttribute("result", new Result<>(true, "Success"));
+            if(court != null) {
+                if(LocalDateTime.now().isBefore(dateTime)){
+                    matchService.planMatch(dateTime, court);
+                    request.setAttribute("result", new Result<>(true, "Success"));
+                }
+                else{
+                    request.setAttribute("result", new Result<>(false, "Can't create match with this date"));
+                }
             }
-            else{
-                request.setAttribute("result", new Result<>(false, "Can't create match with this date"));
-            }
-            matchService.planMatch(dateTime, court);
-            request.setAttribute("result", new Result<>(true, "Success"));
         }
         else {
             request.setAttribute("result", new Result<>(false, "Failure"));
