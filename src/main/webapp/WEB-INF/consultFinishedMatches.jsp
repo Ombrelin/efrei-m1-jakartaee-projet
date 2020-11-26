@@ -10,13 +10,15 @@
 
 <body>
 <jsp:include page="/navbar.jsp"/>
-<div class="container h-100 d-flex justify-content-center align-items-center">
+<div class="container h-100 d-flex justify-content-center">
     <div class="mt-5">
-        <h2>Finished Matches</h2>
+        <h2 class="mt-3 mb-3">Finished Matches</h2>
         <table class="table">
             <thead>
             <tr>
                 <th scope="col">Id</th>
+                <th scope="col">Team 1 Players</th>
+                <th scope="col">Team 2 Players</th>
                 <th scope="col">Team 1 Score</th>
                 <th scope="col">Team 2 Score</th>
                 <th scope="col">Date</th>
@@ -27,6 +29,22 @@
             <j:forEach items="${result}" var="match">
                 <tr>
                     <td>${match.id}</td>
+                    <td>
+                        <j:forEach items="${match.participants}" var="participant">
+                            <j:if test="${participant.teamNumber == 1}">
+                                <j:out value="${participant.player.name}"></j:out>
+                                (<j:out value="${participant.player.nationality}"></j:out>)
+                            </j:if>
+                        </j:forEach>
+                    </td>
+                    <td>
+                        <j:forEach items="${match.participants}" var="participant">
+                            <j:if test="${participant.teamNumber == 2}">
+                                <j:out value="${participant.player.name}"></j:out>
+                                (<j:out value="${participant.player.nationality}"></j:out>)
+                            </j:if>
+                        </j:forEach>
+                    </td>
                     <td>${match.team1Score}</td>
                     <td>${match.team2Score}</td>
                     <td>${match.dateTime}</td>
