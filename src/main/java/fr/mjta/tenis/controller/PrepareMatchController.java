@@ -28,29 +28,7 @@ public class PrepareMatchController extends HttpServlet {
     private RefereeService refereeService;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if ((!Objects.equals(request.getParameter("team1player1"), "")
-                && !Objects.equals(request.getParameter("team2player1"), "")
-                && !Objects.equals(request.getParameter("referee"), "")
-                && !Objects.equals(request.getParameter("matchId"), ""))) {
-
-            String team1player1 = request.getParameter("team1player1");
-            String team2player1 = request.getParameter("team2player1");
-            String refereeId = request.getParameter("referee");
-            String matchId = request.getParameter("matchId");
-
-            Player player1 = playerService.getById(team1player1);
-            Player player2 = playerService.getById(team2player1);
-            Set<Player> team1 = new HashSet<>();
-            Set<Player> team2 = new HashSet<>();
-            team1.add(player1);
-            team2.add(player2);
-
-            Referee referee = refereeService.getById(refereeId);
-
-            matchService.prepareMatch(matchId, team1, team2, referee);
-
-
-        }else if((!Objects.equals(request.getParameter("team1player1"), "")
+        if((!Objects.equals(request.getParameter("team1player1"), "")
                 && !Objects.equals(request.getParameter("team1player2"), "")
                 && !Objects.equals(request.getParameter("team2player1"), "")
                 && !Objects.equals(request.getParameter("team2player2"), "")
@@ -76,10 +54,40 @@ public class PrepareMatchController extends HttpServlet {
             team2.add(player4);
 
             Referee referee = refereeService.getById(refereeId);
+            try{
+                matchService.prepareMatch(matchId, team1, team2, referee);
+            }catch (Exception e){
+                request.setAttribute("errorMessage", e.getMessage());
+                this.getServletContext().getRequestDispatcher("/WEB-INF/error.jsp").forward(request, response);
+            }
 
-            matchService.prepareMatch(matchId, team1, team2, referee);
-        }else{
-            request.setAttribute("result", new Result<>(false, "Failure"));
+        }else if ((!Objects.equals(request.getParameter("team1player1"), "")
+                && !Objects.equals(request.getParameter("team2player1"), "")
+                && !Objects.equals(request.getParameter("referee"), "")
+                && !Objects.equals(request.getParameter("matchId"), ""))) {
+
+            String team1player1 = request.getParameter("team1player1");
+            String team2player1 = request.getParameter("team2player1");
+            String refereeId = request.getParameter("referee");
+            String matchId = request.getParameter("matchId");
+
+            Player player1 = playerService.getById(team1player1);
+            Player player2 = playerService.getById(team2player1);
+            Set<Player> team1 = new HashSet<>();
+            Set<Player> team2 = new HashSet<>();
+            team1.add(player1);
+            team2.add(player2);
+
+            Referee referee = refereeService.getById(refereeId);
+            try{
+                matchService.prepareMatch(matchId, team1, team2, referee);
+            }catch (Exception e){
+                request.setAttribute("errorMessage", e.getMessage());
+                this.getServletContext().getRequestDispatcher("/WEB-INF/error.jsp").forward(request, response);
+            }
+
+        } else{
+            request.setAttribute("result", "Failure");
         }
 
         response.sendRedirect(request.getContextPath() +"/admin/consultMatches");
