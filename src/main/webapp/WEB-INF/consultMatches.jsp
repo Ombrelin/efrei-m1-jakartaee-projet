@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="j" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
 
 <head>
@@ -39,7 +40,9 @@
                             <td>${match.id}</td>
                             <td>${match.team1Score}</td>
                             <td>${match.team2Score}</td>
-                            <td>${match.dateTime}</td>
+                            <td>
+                                <j:out value="${match.dateTime.year}"></j:out> <span class="text-capitalize"> <j:out value="${fn:toLowerCase(match.dateTime.month)}"></j:out></span> <j:out value="${match.dateTime.dayOfMonth}"></j:out>
+                            </td>
                             <td>${match.court}</td>
                             <j:choose>
                                 <j:when test="${match.prepared}">
