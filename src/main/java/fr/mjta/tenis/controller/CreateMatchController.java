@@ -21,9 +21,14 @@ public class CreateMatchController extends HttpServlet {
         if (!Objects.equals(request.getParameter("court"), "") && !Objects.equals(request.getParameter("dateTime"), "")) {
             LocalDateTime dateTime = LocalDateTime.parse(request.getParameter("dateTime"));
             String court = request.getParameter("court");
+            if(LocalDateTime.now().isBefore(dateTime)){
+                matchService.planMatch(dateTime, court);
+                request.setAttribute("result", "Sucess");
+            }
+            else{
+                request.setAttribute("result", "Can't create match with this date");
+            }
 
-            matchService.planMatch(dateTime, court);
-            request.setAttribute("result", "Sucess");
         }
         else {
             request.setAttribute("result", "Failure");
