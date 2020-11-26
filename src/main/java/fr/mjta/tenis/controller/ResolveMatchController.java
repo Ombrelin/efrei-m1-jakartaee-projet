@@ -52,9 +52,12 @@ public class ResolveMatchController extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String matchId = request.getParameter("matchId");
+        if (matchId == null || matchId.isBlank()) {
+            response.sendRedirect(request.getContextPath() + "/error");
+            return;
+        }
 
         var match = matchService.getMatchToResolve(matchId);
-
         var team1 = match.getTeam1();
         var team2 = match.getTeam2();
 
