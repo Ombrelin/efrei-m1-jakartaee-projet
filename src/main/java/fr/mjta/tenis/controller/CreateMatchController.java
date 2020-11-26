@@ -47,13 +47,12 @@ public class CreateMatchController extends HttpServlet {
                 request.setAttribute("result", new Result<>(false, "Can't create match with this date"));
             }
             matchService.planMatch(dateTime, court);
-            request.setAttribute("result", new Result<>(true, "Success"));
+            response.sendRedirect(request.getContextPath() + "/admin/consultMatches");
         }
         else {
             request.setAttribute("result", new Result<>(false, "Failure"));
         }
         doGet(request, response);
-
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
