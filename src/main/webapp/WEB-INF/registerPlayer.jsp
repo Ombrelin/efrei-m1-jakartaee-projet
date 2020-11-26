@@ -37,11 +37,15 @@
                     <option value="FEMALE">Female</option>
                 </select>
             </div>
+            <div class="form-group">
+                <label for="worldrank">Player rank :</label>
+                <input class="form-control" min="0" required step="1" type="number" id="worldrank" name="worldrank"/>
+            </div>
 
             <button type="submit" class="btn btn-primary">Register</button>
 
-            <j:if test="${not empty result and not result.successfull}">
-                <div class="p-3 mb-2 bg-danger text-white mt-3">
+            <j:if test="${not empty result}">
+                <div class="p-3 mb-2 bg-info text-white mt-3">
                     <j:out value="${ result.message }"></j:out>
                 </div>
             </j:if>

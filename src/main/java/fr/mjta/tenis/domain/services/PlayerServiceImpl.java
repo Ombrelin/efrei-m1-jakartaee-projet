@@ -16,11 +16,12 @@ public class PlayerServiceImpl implements PlayerService {
     private PlayerRepository playerRepository;
 
     @Override
-    public void register(String name, String gender, String nationality) {
+    public void register(String name, String gender, String nationality, int worldRank) {
         var player = new Player();
         player.setName(name);
         player.setNationality(nationality);
         player.setGender(Gender.valueOf(gender));
+        player.setWorldRank(worldRank);
         playerRepository.register(player);
     }
 

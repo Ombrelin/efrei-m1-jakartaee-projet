@@ -8,7 +8,7 @@ import java.util.List;
 @Local
 public interface PlayerService {
 
-    void register(String name, String gender, String nationality);
+    void register(String name, String gender, String nationality, int worldRank);
 
     Player getById(String id);
 
