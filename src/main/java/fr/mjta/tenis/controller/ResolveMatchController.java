@@ -51,10 +51,6 @@ public class ResolveMatchController extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String matchId = request.getParameter("matchId");
-        if (matchId == null || matchId.isBlank()) {
-            response.sendRedirect(request.getContextPath() + "/error");
-            return;
-        }
 
         try{
             var match = matchService.getMatchToResolve(matchId);
