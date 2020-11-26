@@ -26,8 +26,16 @@
             </div>
 
             <div class="form-group">
-                <label for="court">Court :</label><br>
-                <input class="form-control" required type="text" name="court" id="court"/>
+
+                <div class="row m-0 mb-2 justify-content-between">
+                    <label for="court">Court : </label>
+                    <a href="<j:url value='/admin/registerCourt'></j:url>" class="btn btn-success"><i class="fas fa-plus"></i></a>
+                </div>
+                <select class="form-control" name="court" id="court">
+                    <j:forEach items="${ courts }" var="court">
+                        <option value="<j:out value='${court.id}'></j:out>"><j:out value='${court.number}'></j:out></option>
+                    </j:forEach>
+                </select>
             </div>
 
             <button type="submit" class="btn btn-primary">Valider</button>
