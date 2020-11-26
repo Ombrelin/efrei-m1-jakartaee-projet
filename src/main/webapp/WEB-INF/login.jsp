@@ -17,7 +17,7 @@
 <jsp:include page="/navbar.jsp"/>
 <div class="h-100 container d-flex justify-content-center align-items-center">
     <div class="col-md-5">
-        <h2>Login</h2>
+        <h2 class="mb-3">Login</h2>
         <form method="post">
             <div class="form-group">
                 <label for="login">Login :</label>
