@@ -1,6 +1,5 @@
 package fr.mjta.tenis.controller;
 
-import fr.mjta.tenis.domain.entities.Player;
 import fr.mjta.tenis.domain.services.MatchService;
 
 import javax.ejb.EJB;
@@ -11,10 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.Duration;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Objects;
-import java.util.Set;
 
 @WebServlet("/admin/resolveMatch")
 public class ResolveMatchController extends HttpServlet {
@@ -22,19 +19,35 @@ public class ResolveMatchController extends HttpServlet {
     private MatchService matchService;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if (!Objects.equals(request.getParameter("team1score"), "") && !Objects.equals(request.getParameter("team2score"), "") && !Objects.equals(request.getParameter("duration"), "")) {
+        if (Objects.equals(request.getParameter("team1score"), "") || Objects.equals(request.getParameter("team2score"), "") || Objects.equals(request.getParameter("duration"), "")) {
+            request.setAttribute("result", "Invalid form");
+            this.getServletContext().getRequestDispatcher("/WEB-INF/resolveMatch.jsp").forward(request, response);
+            return;
+        }
+
+        try {
             int team1score = Integer.parseInt(request.getParameter("team1score"));
             int team2score = Integer.parseInt(request.getParameter("team2score"));
             String durationStr = request.getParameter("duration");
             String matchId = request.getParameter("matchId");
+            var duration = Duration.between(LocalTime.MIN, LocalTime.parse(durationStr));
 
-            Duration duration = Duration.between(LocalTime.MIN, LocalTime.parse(durationStr));
+            if(team1score < 0 || team2score < 0){
+                request.setAttribute("result", "Invalid scores");
+                this.getServletContext().getRequestDispatcher("/WEB-INF/resolveMatch.jsp").forward(request, response);
+                return;
+            }
 
-            var result = matchService.resolveMatch(matchId, team1score, team2score, duration);
-            //request.setAttribute("result", result ? "Match successfully resolved" :"Error occurred while resolving math");
+            matchService.resolveMatch(matchId, team1score, team2score, duration);
+            response.sendRedirect(request.getContextPath() + "/admin/consultMatches");
+        } catch (Exception e) {
+            request.setAttribute("result", "Invalid form : " + e.getMessage());
+            this.getServletContext().getRequestDispatcher("/WEB-INF/resolveMatch.jsp").forward(request, response);
 
         }
-        response.sendRedirect("/WEB-INF/consultMatches.jsp");
+
+
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -42,8 +55,8 @@ public class ResolveMatchController extends HttpServlet {
 
         var match = matchService.getMatchToResolve(matchId);
 
-        Set<Player> team1 = match.getTeam1();
-        Set<Player> team2 = match.getTeam2();
+        var team1 = match.getTeam1();
+        var team2 = match.getTeam2();
 
         request.setAttribute("team1", team1);
         request.setAttribute("team2", team2);
