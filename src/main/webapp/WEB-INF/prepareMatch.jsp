@@ -17,6 +17,7 @@
 <div class="container h-100 d-flex justify-content-center align-items-center">
 
     <div class="col-md-5">
+        <h2>Prepare a Match</h2>
         <form method="post">
 
             <input name="matchId" hidden value="<j:out value='${match.id}'></j:out>"/>
