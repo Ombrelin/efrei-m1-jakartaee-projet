@@ -5,6 +5,7 @@ import fr.mjta.tenis.domain.entities.Referee;
 import fr.mjta.tenis.domain.services.MatchService;
 import fr.mjta.tenis.domain.services.PlayerService;
 import fr.mjta.tenis.domain.services.RefereeService;
+import fr.mjta.tenis.models.Result;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -78,7 +79,7 @@ public class PrepareMatchController extends HttpServlet {
 
             matchService.prepareMatch(matchId, team1, team2, referee);
         }else{
-            request.setAttribute("result", "Failure");
+            request.setAttribute("result", new Result<>(false, "Failure"));
         }
 
         response.sendRedirect(request.getContextPath() +"/admin/consultMatches");

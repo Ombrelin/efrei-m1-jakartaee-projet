@@ -53,8 +53,9 @@ public class MatchServiceImpl implements MatchService {
     public Boolean resolveMatch(String id, int team1score, int team2score, Duration duration) {
         var match = matchRepository.getById(id);
         match.setTeam1Score(team1score);
-        match.setTeam1Score(team2score);
+        match.setTeam2Score(team2score);
         match.setDuration(duration);
+        match.setFinished(true);
 
         return true;
     }

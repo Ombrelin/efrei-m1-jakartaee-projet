@@ -1,6 +1,7 @@
 package fr.mjta.tenis.controller;
 
 import fr.mjta.tenis.domain.services.MatchService;
+import fr.mjta.tenis.models.Result;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -21,12 +22,18 @@ public class CreateMatchController extends HttpServlet {
         if (!Objects.equals(request.getParameter("court"), "") && !Objects.equals(request.getParameter("dateTime"), "")) {
             LocalDateTime dateTime = LocalDateTime.parse(request.getParameter("dateTime"));
             String court = request.getParameter("court");
-
+            if(LocalDateTime.now().isBefore(dateTime)){
+                matchService.planMatch(dateTime, court);
+                request.setAttribute("result", new Result<>(true, "Success"));
+            }
+            else{
+                request.setAttribute("result", new Result<>(false, "Can't create match with this date"));
+            }
             matchService.planMatch(dateTime, court);
-            request.setAttribute("result", "Sucess");
+            request.setAttribute("result", new Result<>(true, "Success"));
         }
         else {
-            request.setAttribute("result", "Failure");
+            request.setAttribute("result", new Result<>(false, "Failure"));
         }
         doGet(request, response);
 
