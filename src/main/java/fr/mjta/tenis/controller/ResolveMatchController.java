@@ -40,15 +40,21 @@ public class ResolveMatchController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String matchId = request.getParameter("matchId");
 
-        var match = matchService.getMatchToResolve(matchId);
+        try{
+            var match = matchService.getMatchToResolve(matchId);
 
-        Set<Player> team1 = match.getTeam1();
-        Set<Player> team2 = match.getTeam2();
+            Set<Player> team1 = match.getTeam1();
+            Set<Player> team2 = match.getTeam2();
 
-        request.setAttribute("team1", team1);
-        request.setAttribute("team2", team2);
-        request.setAttribute("matchId", matchId);
+            request.setAttribute("team1", team1);
+            request.setAttribute("team2", team2);
+            request.setAttribute("matchId", matchId);
 
-        this.getServletContext().getRequestDispatcher("/WEB-INF/resolveMatch.jsp").forward(request, response);
+            this.getServletContext().getRequestDispatcher("/WEB-INF/resolveMatch.jsp").forward(request, response);
+        }catch(Exception e){
+            request.setAttribute("errorMessage", e.getMessage());
+            this.getServletContext().getRequestDispatcher("/WEB-INF/error.jsp").forward(request, response);
+        }
+
     }
 }
