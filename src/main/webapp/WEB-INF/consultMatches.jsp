@@ -18,8 +18,8 @@
     <jsp:include page="/navbar.jsp" />
     <div class="container h-100 d-flex justify-content-center">
         <div class="mt-5">
-            <h2>Matches</h2>
-            <table class="table mt-5">
+            <h2 class="mt-5">Matches</h2>
+            <table class="table mt-3">
                 <thead>
                     <tr>
                         <th scope="col">Id</th>
