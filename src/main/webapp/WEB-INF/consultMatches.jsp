@@ -16,10 +16,10 @@
 
 <body>
     <jsp:include page="/navbar.jsp" />
-    <div class="container h-100 d-flex justify-content-center align-items-center">
+    <div class="container h-100 d-flex justify-content-center">
         <div class="mt-5">
             <h2>Matches</h2>
-            <table class="table">
+            <table class="table mt-5">
                 <thead>
                     <tr>
                         <th scope="col">Id</th>
