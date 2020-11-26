@@ -1,6 +1,7 @@
 package fr.mjta.tenis.controller;
 
 import fr.mjta.tenis.domain.services.RefereeService;
+import fr.mjta.tenis.models.Result;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -22,9 +23,9 @@ public class RefereeController extends HttpServlet {
             String nationality = request.getParameter("nationality");
 
             var result = refereeService.registerReferee(name, nationality);
-            request.setAttribute("result", result ? "Referee registered" :"registration failed");
+            request.setAttribute("result", new Result<>(result, result ? "Referee registered" : "Registration failed"));
         }else {
-            request.setAttribute("result", "Failure");
+            request.setAttribute("result", new Result<>(false, "Failure"));
         }
 
         doGet(request, response);

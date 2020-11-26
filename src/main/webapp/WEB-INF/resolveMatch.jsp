@@ -27,7 +27,7 @@
                         </tr>
                     </j:forEach>
                 </label>
-                <input class="form-control" required step="1" type="number" id="team1score" name="team1score"/>
+                <input class="form-control" min="0" required step="1" type="number" id="team1score" name="team1score"/>
             </div>
             <div class="form-group">
                 <label for="team2score">Team 2 score :
@@ -36,26 +36,22 @@
                             <td>${player.name}</td>
                         </tr>
                     </j:forEach></label>
-                <input class="form-control" required step="1" type="number" id="team2score" name="team2score"/>
+                <input class="form-control" min="0" required step="1" type="number" id="team2score" name="team2score"/>
             </div>
-
 
             <div class="form-group">
                 <label for="duration">Duration : </label>
                 <input class="form-control" value="00:00" required type="time" id="duration" name="duration" step="1"/>
             </div>
+            <input hidden type="text" id="matchId" name="matchId" value="><j:out value="${ matchId }"></j:out>">
 
-            <input hidden type="text" id="matchId" name="matchId" value="<j:out value='${ matchId }'></j:out>">
-
-            <br/>
             <button type="submit" class="btn btn-primary">Resolve</button>
 
-            <j:if test="${not empty result}">
+            <j:if test="${not empty result and not result.successfull}">
                 <div class="p-3 mb-2 bg-danger text-white mt-3">
-                    <j:out value='${ result }'></j:out>
+                    <j:out value="${ result.message }"></j:out>
                 </div>
             </j:if>
-
         </form>
     </div>
 </div>

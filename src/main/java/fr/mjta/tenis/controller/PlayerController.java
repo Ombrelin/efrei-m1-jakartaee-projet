@@ -1,6 +1,7 @@
 package fr.mjta.tenis.controller;
 
 import fr.mjta.tenis.domain.services.PlayerService;
+import fr.mjta.tenis.models.Result;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -28,7 +29,7 @@ public class PlayerController extends HttpServlet {
             result = false;
         }
 
-        request.setAttribute("result", result ? "Create Successful" : "All fields are required");
+        request.setAttribute("result", new Result<>(result, result ? "Create Successful" : "All fields are required"));
         doGet(request, response);
     }
 

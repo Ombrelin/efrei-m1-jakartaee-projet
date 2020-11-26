@@ -1,6 +1,7 @@
 package fr.mjta.tenis.controller;
 
 import fr.mjta.tenis.domain.services.MatchService;
+import fr.mjta.tenis.models.Result;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -37,16 +38,12 @@ public class ResolveMatchController extends HttpServlet {
                 this.getServletContext().getRequestDispatcher("/WEB-INF/resolveMatch.jsp").forward(request, response);
                 return;
             }
-
             matchService.resolveMatch(matchId, team1score, team2score, duration);
             response.sendRedirect(request.getContextPath() + "/admin/consultMatches");
         } catch (Exception e) {
-            request.setAttribute("result", "Invalid form : " + e.getMessage());
+            request.setAttribute("result", new Result<>(false, "Invalid form : " + e.getMessage()));
             this.getServletContext().getRequestDispatcher("/WEB-INF/resolveMatch.jsp").forward(request, response);
-
         }
-
-
 
     }
 
