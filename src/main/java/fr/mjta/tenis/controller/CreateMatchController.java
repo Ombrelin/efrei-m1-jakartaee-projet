@@ -1,5 +1,6 @@
 package fr.mjta.tenis.controller;
 
+import fr.mjta.tenis.domain.services.CourtService;
 import fr.mjta.tenis.domain.services.MatchService;
 import fr.mjta.tenis.models.Result;
 
@@ -18,10 +19,14 @@ public class CreateMatchController extends HttpServlet {
     @EJB
     private MatchService matchService;
 
+    @EJB
+    private CourtService courtService;
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (!Objects.equals(request.getParameter("court"), "") && !Objects.equals(request.getParameter("dateTime"), "")) {
             LocalDateTime dateTime = LocalDateTime.parse(request.getParameter("dateTime"));
-            String court = request.getParameter("court");
+            String courtNumber = request.getParameter("court");
+            var court = courtService.create(courtNumber);
             if(LocalDateTime.now().isBefore(dateTime)){
                 matchService.planMatch(dateTime, court);
                 request.setAttribute("result", new Result<>(true, "Success"));

@@ -26,9 +26,6 @@ public class Match {
     private LocalDateTime dateTime;
 
     @Column
-    private String court;
-
-    @Column
     private Duration duration;
 
     @Column(columnDefinition = "boolean default false")
@@ -36,6 +33,9 @@ public class Match {
 
     @Column(columnDefinition = "boolean default false")
     private boolean prepared;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Court court;
 
     @ManyToOne(fetch = FetchType.EAGER)
     private Referee referee;
@@ -86,11 +86,11 @@ public class Match {
         this.dateTime = dateTime;
     }
 
-    public String getCourt() {
+    public Court getCourt() {
         return court;
     }
 
-    public void setCourt(String court) {
+    public void setCourt(Court court) {
         this.court = court;
     }
 

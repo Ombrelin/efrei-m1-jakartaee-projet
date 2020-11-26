@@ -45,7 +45,7 @@
                                 <span class="text-capitalize"> <j:out value="${fn:toLowerCase(match.dateTime.month)}"></j:out></span>
                                 <j:out value="${match.dateTime.year}"></j:out>
                             </td>
-                            <td>${match.court}</td>
+                            <td>${match.court.number}</td>
                             <j:choose>
                                 <j:when test="${match.prepared}">
                                     <td><i class="fa fa-check" aria-hidden="true"></i></td>
