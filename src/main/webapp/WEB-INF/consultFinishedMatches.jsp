@@ -49,7 +49,9 @@
                     <td>${match.team1Score}</td>
                     <td>${match.team2Score}</td>
                     <td>
-                        <j:out value="${match.dateTime.year}"></j:out> <span class="text-capitalize"> <j:out value="${fn:toLowerCase(match.dateTime.month)}"></j:out></span> <j:out value="${match.dateTime.dayOfMonth}"></j:out>
+                        <j:out value="${match.dateTime.dayOfMonth}"></j:out>
+                        <span class="text-capitalize"> <j:out value="${fn:toLowerCase(match.dateTime.month)}"></j:out></span>
+                        <j:out value="${match.dateTime.year}"></j:out>
                     </td>
                     <td>${match.court}</td>
                 </tr>
