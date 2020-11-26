@@ -37,6 +37,10 @@
                     <option value="FEMALE">Female</option>
                 </select>
             </div>
+            <div class="form-group">
+                <label for="worldrank">Player rank :</label>
+                <input class="form-control" min="0" required step="1" type="number" id="worldrank" name="worldrank"/>
+            </div>
 
             <button type="submit" class="btn btn-primary">Register</button>
 
