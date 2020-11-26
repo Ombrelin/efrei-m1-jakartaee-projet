@@ -32,6 +32,7 @@
                         <j:forEach items="${match.participants}" var="participant">
                             <j:if test="${participant.teamNumber == 1}">
                                 <j:out value="${participant.player.name}"></j:out>
+                                <j:out value="${participant.player.nationality}"></j:out>
                             </j:if>
                         </j:forEach>
                     </td>
@@ -39,6 +40,7 @@
                         <j:forEach items="${match.participants}" var="participant">
                             <j:if test="${participant.teamNumber == 2}">
                                 <j:out value="${participant.player.name}"></j:out>
+                                <j:out value="${participant.player.nationality}"></j:out>
                             </j:if>
                         </j:forEach>
                     </td>
