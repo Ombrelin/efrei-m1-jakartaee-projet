@@ -81,6 +81,12 @@
 
             <button class="btn btn-primary" type="submit">Prepare</button>
 
+            <j:if test="${not empty result and not result.successfull}">
+                <div class="p-3 mb-2 bg-danger text-white mt-3">
+                    <j:out value="${ result.message }"></j:out>
+                </div>
+            </j:if>
+
         </form>
     </div>
 </div>
