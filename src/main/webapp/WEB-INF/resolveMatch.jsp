@@ -41,9 +41,8 @@
 
             <div class="form-group">
                 <label for="duration">Duration : </label>
-                <input class="form-control" required type="time" id="duration" name="duration" step="1"/>
+                <input class="form-control" value="00:00" required type="time" id="duration" name="duration" step="1"/>
             </div>
-
             <input hidden type="text" id="matchId" name="matchId" value="><j:out value="${ matchId }"></j:out>">
 
             <button type="submit" class="btn btn-primary">Resolve</button>
