@@ -17,7 +17,7 @@
 <jsp:include page="/navbar.jsp"/>
 <div class="container h-100 d-flex justify-content-center align-items-center">
     <div class="col-md-5">
-        <h2>Register New Player</h2>
+        <h2 class="mb-3">Register New Player</h2>
         <form method="post">
 
             <div class="form-group">
