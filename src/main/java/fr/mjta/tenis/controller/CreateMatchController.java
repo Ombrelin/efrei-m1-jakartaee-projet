@@ -1,5 +1,6 @@
 package fr.mjta.tenis.controller;
 
+import fr.mjta.tenis.domain.entities.Court;
 import fr.mjta.tenis.domain.services.CourtService;
 import fr.mjta.tenis.domain.services.MatchService;
 import fr.mjta.tenis.models.Result;
@@ -25,8 +26,19 @@ public class CreateMatchController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (!Objects.equals(request.getParameter("court"), "") && !Objects.equals(request.getParameter("dateTime"), "")) {
             LocalDateTime dateTime = LocalDateTime.parse(request.getParameter("dateTime"));
-            String courtNumber = request.getParameter("court");
-            var court = courtService.create(courtNumber);
+            String courtId = request.getParameter("court");
+
+            Court court;
+
+            try {
+                court = courtService.get(courtId);
+            }
+            catch (Exception e) {
+                request.setAttribute("result", new Result<>(true, "This court doesn't exist"));
+                return;
+            }
+
+
             if(LocalDateTime.now().isBefore(dateTime)){
                 matchService.planMatch(dateTime, court);
                 request.setAttribute("result", new Result<>(true, "Success"));
@@ -45,6 +57,7 @@ public class CreateMatchController extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setAttribute("courts", courtService.getAll());
         this.getServletContext().getRequestDispatcher("/WEB-INF/planMatch.jsp").forward(request, response);
     }
 }

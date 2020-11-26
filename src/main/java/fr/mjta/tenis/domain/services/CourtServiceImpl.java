@@ -5,6 +5,7 @@ import fr.mjta.tenis.domain.repositories.CourtRepository;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import java.util.List;
 
 @Stateless
 public class CourtServiceImpl implements CourtService {
@@ -18,5 +19,15 @@ public class CourtServiceImpl implements CourtService {
 		court.setNumber(number);
 		courtRepository.insert(court);
 		return court;
+	}
+
+	@Override
+	public List<Court> getAll() {
+		return courtRepository.getAll();
+	}
+
+	@Override
+	public Court get(String id) {
+		return courtRepository.getById(id);
 	}
 }

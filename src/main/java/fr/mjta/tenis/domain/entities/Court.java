@@ -12,7 +12,7 @@ public class Court {
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
 	private String id;
 
-	@Column
+	@Column(unique = true)
 	private String number;
 
 	@OneToMany(fetch = FetchType.EAGER)

@@ -20,7 +20,7 @@ public class CourtRepositoryImpl implements CourtRepository {
 	}
 
 	@Override
-	public List<Court> getCourts() {
+	public List<Court> getAll() {
 		return this.entityManager.createQuery("SELECT c FROM Court c", Court.class).getResultList();
 	}
 

@@ -7,7 +7,7 @@ import java.util.List;
 public interface CourtRepository {
 	Court insert(Court court);
 
-	List<Court> getCourts();
+	List<Court> getAll();
 
 	Court getById(String id);
 }
