@@ -67,7 +67,25 @@ public class MatchServiceImpl implements MatchService {
 
     @Override
     public void prepareMatch(String id, Set<Player> team1, Set<Player> team2, Referee referee) {
+        if(team2.size() > 2 || team2.size() == 0 || team1.size() > 2 || team1.size() == 0){
+            throw new IllegalArgumentException("One or both of the teams have to many or no player");
+        }
+        if(team1.size() != team2.size()){
+            throw new IllegalArgumentException("Both teams do not have the same number of players");
+        }
+        if((team1.size() == 2 && team1.toArray(new Player[]{})[0].getId().equals(team1.toArray(new Player[]{})[1].getId()))
+            ||(team2.size() == 2 && team2.toArray(new Player[]{})[0].getId().equals(team2.toArray(new Player[]{})[1].getId()))){
+            throw new IllegalArgumentException("One or both of the teams has twice the same player");
+        }
+        team1.forEach(player1 -> {
+            team2.forEach(player2 ->{
+                if(player1.getId().equals(player2.getId())){
+                    throw new IllegalArgumentException("A player cannot be in two different teams");
+                }
+            });
+        });
         var match = matchRepository.getById(id);
+
         match.setReferee(referee);
         match.setPrepared(true);
 
@@ -78,7 +96,6 @@ public class MatchServiceImpl implements MatchService {
                      .map(player -> new Participation(match, player, 1))
                      .collect(Collectors.toList())
         );
-
 
         participations.addAll(team2.stream().map(player -> new Participation(match, player, 2)).collect(Collectors.toList()));
 
