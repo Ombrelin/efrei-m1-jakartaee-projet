@@ -1,6 +1,7 @@
 package fr.mjta.tenis.controller;
 
 import fr.mjta.tenis.domain.services.OrganizerService;
+import fr.mjta.tenis.models.Result;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -22,12 +23,12 @@ public class OrganizerController extends HttpServlet {
         String password = request.getParameter("password");
 
         if (Objects.equals(login, "") || Objects.equals(password, "")) {
-            request.setAttribute("result","Login Failed");
+            request.setAttribute("result",new Result<>(false, "Login Failed"));
             doGet(request, response);
         }
         else {
             var result = organizerService.login(login, password);
-            request.setAttribute("result", result ? "Login Successful" : "Login Failed");
+            request.setAttribute("result", new Result<>(result, result ? "Login Successful" : "Login Failed"));
 
             if(!result){
                 doGet(request, response);
