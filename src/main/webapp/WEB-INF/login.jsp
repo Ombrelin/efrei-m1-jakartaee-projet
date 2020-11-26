@@ -30,9 +30,9 @@
 
             <button type="submit" class="btn btn-primary">Login</button>
 
-            <j:if test="${not empty result}">
+            <j:if test="${not empty result and not result.successfull}">
                 <div class="p-3 mb-2 bg-danger text-white mt-3">
-                    <j:out value="${ result }"></j:out>
+                    <j:out value="${ result.message }"></j:out>
                 </div>
             </j:if>
         </form>
