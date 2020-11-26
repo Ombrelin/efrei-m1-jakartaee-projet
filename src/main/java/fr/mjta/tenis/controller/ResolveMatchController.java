@@ -1,5 +1,6 @@
 package fr.mjta.tenis.controller;
 
+import fr.mjta.tenis.domain.entities.Player;
 import fr.mjta.tenis.domain.services.MatchService;
 import fr.mjta.tenis.models.Result;
 
@@ -13,6 +14,7 @@ import java.io.IOException;
 import java.time.Duration;
 import java.time.LocalTime;
 import java.util.Objects;
+import java.util.Set;
 
 @WebServlet("/admin/resolveMatch")
 public class ResolveMatchController extends HttpServlet {
