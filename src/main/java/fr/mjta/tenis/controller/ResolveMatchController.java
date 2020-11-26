@@ -54,14 +54,21 @@ public class ResolveMatchController extends HttpServlet {
             return;
         }
 
-        var match = matchService.getMatchToResolve(matchId);
-        var team1 = match.getTeam1();
-        var team2 = match.getTeam2();
+        try{
+            var match = matchService.getMatchToResolve(matchId);
 
-        request.setAttribute("team1", team1);
-        request.setAttribute("team2", team2);
-        request.setAttribute("matchId", matchId);
+            Set<Player> team1 = match.getTeam1();
+            Set<Player> team2 = match.getTeam2();
 
-        this.getServletContext().getRequestDispatcher("/WEB-INF/resolveMatch.jsp").forward(request, response);
+            request.setAttribute("team1", team1);
+            request.setAttribute("team2", team2);
+            request.setAttribute("matchId", matchId);
+
+            this.getServletContext().getRequestDispatcher("/WEB-INF/resolveMatch.jsp").forward(request, response);
+        }catch(Exception e){
+            request.setAttribute("errorMessage", e.getMessage());
+            this.getServletContext().getRequestDispatcher("/WEB-INF/error.jsp").forward(request, response);
+        }
+
     }
 }

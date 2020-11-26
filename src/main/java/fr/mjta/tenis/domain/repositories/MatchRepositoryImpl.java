@@ -5,9 +5,7 @@ import fr.mjta.tenis.domain.entities.Player;
 import fr.mjta.tenis.domain.entities.Referee;
 
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
+import javax.persistence.*;
 import java.time.Duration;
 import java.util.List;
 import java.util.Set;
@@ -37,13 +35,20 @@ public class MatchRepositoryImpl implements MatchRepository {
     @Override
     public Match getMatchToResolve(String id) {
         TypedQuery<Match> query = entityManager.createQuery("SELECT m FROM Match m WHERE m.id = :id AND m.finished = false AND m.prepared = true", Match.class);
-        return query.setParameter("id", id).getSingleResult();
+        try{
+            return query.setParameter("id", id).getSingleResult();
+        }catch(Exception e){
+            throw new IllegalArgumentException("No such Match to resolve");
+        }
     }
-
     @Override
     public Match getMatchToPrepare(String id) {
         TypedQuery<Match> query = entityManager.createQuery("SELECT m FROM Match m WHERE m.id = :id AND m.finished = false AND m.prepared = false", Match.class);
-        return query.setParameter("id", id).getSingleResult();
+        try{
+            return query.setParameter("id", id).getSingleResult();
+        }catch(Exception e){
+            throw new IllegalArgumentException("No such Match to prepare");
+        }
     }
 
     @Override
