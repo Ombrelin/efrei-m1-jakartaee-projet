@@ -1,6 +1,7 @@
 package fr.mjta.tenis.controller;
 
 import fr.mjta.tenis.domain.services.MatchService;
+import fr.mjta.tenis.models.Result;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -23,10 +24,10 @@ public class CreateMatchController extends HttpServlet {
             String court = request.getParameter("court");
 
             matchService.planMatch(dateTime, court);
-            request.setAttribute("result", "Sucess");
+            request.setAttribute("result", new Result<>(true, "Success"));
         }
         else {
-            request.setAttribute("result", "Failure");
+            request.setAttribute("result", new Result<>(false, "Failure"));
         }
         doGet(request, response);
 

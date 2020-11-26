@@ -2,6 +2,7 @@ package fr.mjta.tenis.controller;
 
 import fr.mjta.tenis.domain.entities.Player;
 import fr.mjta.tenis.domain.services.MatchService;
+import fr.mjta.tenis.models.Result;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -31,7 +32,8 @@ public class ResolveMatchController extends HttpServlet {
             Duration duration = Duration.between(LocalTime.MIN, LocalTime.parse(durationStr));
 
             var result = matchService.resolveMatch(matchId, team1score, team2score, duration);
-            //request.setAttribute("result", result ? "Match successfully resolved" :"Error occurred while resolving math");
+            request.setAttribute("result", new Result<>(result,
+                    result ? "Match successfully resolved" : "Error occurred while resolving math"));
 
         }
         response.sendRedirect("/WEB-INF/consultMatches.jsp");
