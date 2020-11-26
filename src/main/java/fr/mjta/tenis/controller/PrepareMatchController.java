@@ -87,12 +87,16 @@ public class PrepareMatchController extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String matchId = request.getParameter("matchId");
+        try{
+            var match = matchService.getMatchToPrepare(matchId);
+            request.setAttribute("match", match);
+            request.setAttribute("players", playerService.getAll());
+            request.setAttribute("referees", refereeService.getAll());
 
-        var match = matchService.getMatchToPrepare(matchId);
-        request.setAttribute("match", match);
-        request.setAttribute("players", playerService.getAll());
-        request.setAttribute("referees", refereeService.getAll());
-
-        this.getServletContext().getRequestDispatcher("/WEB-INF/prepareMatch.jsp").forward(request, response);
+            this.getServletContext().getRequestDispatcher("/WEB-INF/prepareMatch.jsp").forward(request, response);
+        } catch(Exception e){
+            request.setAttribute("errorMessage", e.getMessage());
+            this.getServletContext().getRequestDispatcher("/WEB-INF/error.jsp").forward(request, response);
+        }
     }
 }

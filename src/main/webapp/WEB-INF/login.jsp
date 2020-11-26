@@ -13,7 +13,7 @@
     <title>Login</title>
     <jsp:include page="/style.jsp"/>
 </head>
-
+<body>
 <jsp:include page="/navbar.jsp"/>
 <div class="h-100 container d-flex justify-content-center align-items-center">
     <div class="col-md-5">
