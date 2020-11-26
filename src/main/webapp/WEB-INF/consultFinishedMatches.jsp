@@ -12,7 +12,8 @@
 <jsp:include page="/navbar.jsp"/>
 <div class="container h-100 d-flex justify-content-center">
     <div class="mt-5">
-        <table class="table mt-5">
+        <h2 class="mt-3 mb-3">Finished Matches</h2>
+        <table class="table">
             <thead>
             <tr>
                 <th scope="col">Id</th>
