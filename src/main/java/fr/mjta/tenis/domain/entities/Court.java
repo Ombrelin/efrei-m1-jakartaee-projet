@@ -15,7 +15,7 @@ public class Court {
 	@Column(unique = true)
 	private String number;
 
-	@OneToMany(fetch = FetchType.EAGER)
+	@OneToMany
 	private Set<Match> matches;
 
 	public String getId() {
