@@ -20,10 +20,11 @@ public class PlayerController extends HttpServlet {
         String name = request.getParameter("name");
         String gender = request.getParameter("gender");
         String nationality = request.getParameter("nationality");
+        int worldRank = Integer.parseInt(request.getParameter("worldrank"));
 
         boolean result;
-        if (!name.isEmpty() && !gender.isEmpty() && !nationality.isEmpty()) {
-            playerService.register(name, gender, nationality);
+        if (!name.isEmpty() && !gender.isEmpty() && !nationality.isEmpty() && worldRank > 0) {
+            playerService.register(name, gender, nationality,worldRank);
             result = true;
         } else {
             result = false;
