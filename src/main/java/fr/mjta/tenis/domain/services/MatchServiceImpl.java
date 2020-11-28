@@ -1,9 +1,7 @@
 package fr.mjta.tenis.domain.services;
 
-import fr.mjta.tenis.domain.entities.Match;
-import fr.mjta.tenis.domain.entities.Participation;
-import fr.mjta.tenis.domain.entities.Player;
-import fr.mjta.tenis.domain.entities.Referee;
+import fr.mjta.tenis.domain.entities.*;
+import fr.mjta.tenis.domain.repositories.CourtRepository;
 import fr.mjta.tenis.domain.repositories.MatchRepository;
 import fr.mjta.tenis.domain.repositories.ParticipationRepository;
 
@@ -26,11 +24,11 @@ public class MatchServiceImpl implements MatchService {
     private ParticipationRepository participationRepository;
 
     @Override
-    public void planMatch(LocalDateTime dateTime, String court) {
+    public void planMatch(LocalDateTime dateTime, Court court) {
         var match = new Match();
         match.setDateTime(dateTime);
-        match.setCourt(court);
 
+        match.setCourt(court);
         matchRepository.insertMatch(match);
     }
 
