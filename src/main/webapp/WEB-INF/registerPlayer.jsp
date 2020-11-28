@@ -45,7 +45,7 @@
             <button type="submit" class="btn btn-primary">Register</button>
 
             <j:if test="${not empty result}">
-                <div class="p-3 mb-2 bg-info text-white mt-3">
+                <div class="p-3 mb-2 ${result.successfull ? "bg-success" : "bg-danger"} text-white mt-3">
                     <j:out value="${ result.message }"></j:out>
                 </div>
             </j:if>
