@@ -1,5 +1,6 @@
 package fr.mjta.tenis.domain.services;
 
+import fr.mjta.tenis.domain.entities.Court;
 import fr.mjta.tenis.domain.entities.Match;
 import fr.mjta.tenis.domain.entities.Player;
 import fr.mjta.tenis.domain.entities.Referee;
@@ -12,7 +13,7 @@ import java.util.Set;
 
 @Local
 public interface MatchService {
-    void planMatch(LocalDateTime dateTime, String court);
+    void planMatch(LocalDateTime dateTime, Court court);
 
     List<Match> getMatches();
 

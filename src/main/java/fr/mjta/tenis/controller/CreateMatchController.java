@@ -1,5 +1,7 @@
 package fr.mjta.tenis.controller;
 
+import fr.mjta.tenis.domain.entities.Court;
+import fr.mjta.tenis.domain.services.CourtService;
 import fr.mjta.tenis.domain.services.MatchService;
 import fr.mjta.tenis.models.Result;
 
@@ -18,19 +20,32 @@ public class CreateMatchController extends HttpServlet {
     @EJB
     private MatchService matchService;
 
+    @EJB
+    private CourtService courtService;
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (!Objects.equals(request.getParameter("court"), "") && !Objects.equals(request.getParameter("dateTime"), "")) {
             LocalDateTime dateTime = LocalDateTime.parse(request.getParameter("dateTime"));
-            String court = request.getParameter("court");
-            if(LocalDateTime.now().isBefore(dateTime)){
-                matchService.planMatch(dateTime, court);
-                request.setAttribute("result", new Result<>(true, "Success"));
+            String courtId = request.getParameter("court");
+
+            Court court = null;
+
+            try {
+                court = courtService.get(courtId);
             }
-            else{
-                request.setAttribute("result", new Result<>(false, "Can't create match with this date"));
+            catch (Exception e) {
+                request.setAttribute("result", new Result<>(false, "This court doesn't exist"));
             }
-            matchService.planMatch(dateTime, court);
-            request.setAttribute("result", new Result<>(true, "Success"));
+
+            if(court != null) {
+                if(LocalDateTime.now().isBefore(dateTime)){
+                    matchService.planMatch(dateTime, court);
+                    request.setAttribute("result", new Result<>(true, "Success"));
+                }
+                else{
+                    request.setAttribute("result", new Result<>(false, "Can't create match with this date"));
+                }
+            }
         }
         else {
             request.setAttribute("result", new Result<>(false, "Failure"));
@@ -40,6 +55,7 @@ public class CreateMatchController extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setAttribute("courts", courtService.getAll());
         this.getServletContext().getRequestDispatcher("/WEB-INF/planMatch.jsp").forward(request, response);
     }
 }
