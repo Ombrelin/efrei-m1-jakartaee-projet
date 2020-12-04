@@ -5,6 +5,7 @@ import fr.mjta.tenis.domain.repositories.CourtRepository;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Stateless
@@ -24,6 +25,11 @@ public class CourtServiceImpl implements CourtService {
 	@Override
 	public List<Court> getAll() {
 		return courtRepository.getAll();
+	}
+
+	@Override
+	public boolean isAvailable(Court court, LocalDateTime matchDate) {
+		return courtRepository.isAvailable(court, matchDate);
 	}
 
 	@Override
