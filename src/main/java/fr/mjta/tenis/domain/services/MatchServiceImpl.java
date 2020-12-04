@@ -75,6 +75,11 @@ public class MatchServiceImpl implements MatchService {
             ||(team2.size() == 2 && team2.toArray(new Player[]{})[0].getId().equals(team2.toArray(new Player[]{})[1].getId()))){
             throw new IllegalArgumentException("One or both of the teams has twice the same player");
         }
+        if(team1.size() == 1 && team2.size() == 1){
+            if(team1.toArray(new Player[]{})[0].getGender() != team2.toArray(new Player[]{})[0].getGender()){
+                throw new IllegalArgumentException("In single matches, players must have the same gender");
+            }
+        }
         team1.forEach(player1 -> {
             team2.forEach(player2 ->{
                 if(player1.getId().equals(player2.getId())){

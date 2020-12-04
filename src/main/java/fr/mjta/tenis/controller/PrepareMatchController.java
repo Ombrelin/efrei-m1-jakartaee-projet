@@ -28,7 +28,8 @@ public class PrepareMatchController extends HttpServlet {
     private RefereeService refereeService;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if((!Objects.equals(request.getParameter("team1player1"), "")
+        if((Objects.equals(request.getParameter("type"), "double")
+                &&!Objects.equals(request.getParameter("team1player1"), "")
                 && !Objects.equals(request.getParameter("team1player2"), "")
                 && !Objects.equals(request.getParameter("team2player1"), "")
                 && !Objects.equals(request.getParameter("team2player2"), "")
@@ -61,7 +62,8 @@ public class PrepareMatchController extends HttpServlet {
                 this.getServletContext().getRequestDispatcher("/WEB-INF/error.jsp").forward(request, response);
             }
 
-        }else if ((!Objects.equals(request.getParameter("team1player1"), "")
+        }else if ((Objects.equals(request.getParameter("type"), "simple")
+                &&!Objects.equals(request.getParameter("team1player1"), "")
                 && !Objects.equals(request.getParameter("team2player1"), "")
                 && !Objects.equals(request.getParameter("referee"), "")
                 && !Objects.equals(request.getParameter("matchId"), ""))) {
