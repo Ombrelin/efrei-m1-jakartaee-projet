@@ -39,11 +39,17 @@ public class CreateMatchController extends HttpServlet {
 
             if(court != null) {
                 if(LocalDateTime.now().isBefore(dateTime)){
-                    matchService.planMatch(dateTime, court);
-                    request.setAttribute("result", new Result<>(true, "Success"));
+                    if(courtService.isAvailable(court, dateTime))
+                    {
+                        matchService.planMatch(dateTime, court);
+                        request.setAttribute("result", new Result<>(true, "Success"));
+                    }
+                    else {
+                        request.setAttribute("result", new Result<>(false, "This court is not available for this date"));
+                    }
                 }
                 else{
-                    request.setAttribute("result", new Result<>(false, "Can't create match with this date"));
+                    request.setAttribute("result", new Result<>(false, "Can't create a match with a date in the past"));
                 }
             }
         }
