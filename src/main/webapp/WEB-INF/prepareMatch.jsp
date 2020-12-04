@@ -33,13 +33,13 @@
 
             <div class="form-group">
                 <label for="type">Match type : </label>
-                <select onchange="handleChangeType(this.value)" class="form-control" id="type">
+                <select onchange="handleChangeType(this.value)" class="form-control" id="type" name="type">
                     <option selected value="simple">Simple</option>
                     <option value="double">Double</option>
                 </select>
             </div>
 
-            <h3 class="mt-4">Team 1 Players</h3>
+                <h3 class="mt-4">Team 1 Players</h3>
 
             <div class="form-group">
                 <label for="type">Player 1 : </label>
