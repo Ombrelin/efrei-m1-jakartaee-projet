@@ -21,7 +21,7 @@
         <form method="post">
 
             <div class="form-group">
-                <label for="dateTime">Date et heure du match :</label><br>
+                <label for="dateTime">Match date and Time :</label><br>
                 <input class="form-control" required type="datetime-local" name="dateTime" id="dateTime"/><br>
             </div>
 
@@ -38,7 +38,7 @@
                 </select>
             </div>
 
-            <button type="submit" class="btn btn-primary">Valider</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
 
             <j:if test="${not empty result}">
                 <div class="p-3 mb-2 ${result.successfull ? "bg-success" : "bg-danger"} text-white mt-3">
