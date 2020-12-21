@@ -15,7 +15,7 @@
 - Architecture de l’application
 - Sécurité
    - Stockage des mots de passe
-   - Authentification.................................................................................................................................
+   - Authentification
    - Autorisation
 - Difficultés rencontrées
 - Bilan
